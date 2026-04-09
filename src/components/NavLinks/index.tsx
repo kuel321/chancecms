@@ -5,10 +5,10 @@ import { motion } from 'framer-motion'
 type NavPage = { title: string; slug: string }
 
 export function NavLinks({ pages }: { pages: NavPage[] }) {
-  // Show "home" as "Home", all others by title — skip slug "home" since logo covers it
-  const links = pages
-    .filter(p => p.slug !== 'home')
-    .map(p => ({ href: `/${p.slug}`, label: p.title }))
+  const links = pages.map(p => ({
+    href: p.slug === 'home' ? '/' : `/${p.slug}`,
+    label: p.title,
+  }))
 
   return (
     <>
