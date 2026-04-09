@@ -1,14 +1,29 @@
 import React from 'react'
 import Link from 'next/link'
+import { getPayload } from 'payload'
+import configPromise from '@payload-config'
 import { NavLinks } from '@/components/NavLinks'
 import './globals.css'
 
-export default function FrontendLayout({ children }: { children: React.ReactNode }) {
+async function getPublishedPages() {
+  const payload = await getPayload({ config: configPromise })
+  const result = await payload.find({
+    collection: 'pages',
+    where: { _status: { equals: 'published' } },
+    select: { title: true, slug: true },
+    sort: 'title',
+    limit: 20,
+  })
+  return result.docs
+}
+
+export default async function FrontendLayout({ children }: { children: React.ReactNode }) {
+  const pages = await getPublishedPages()
+
   return (
     <html lang="en">
       <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
-        {/* Nav */}
         <header style={{
           position: 'sticky', top: 0, zIndex: 100,
           background: 'rgba(240,224,199,0.96)',
@@ -21,16 +36,12 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
             <img src="/media/chance-logo-no-letters-png.png" alt="ChanceCMS" style={{ height: 46 }} />
           </Link>
           <nav style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
-            <NavLinks />
-            <Link href="/admin" className="btn-dark" style={{ padding: '9px 20px' }}>
-              Admin
-            </Link>
+            <NavLinks pages={pages.map(p => ({ title: p.title, slug: p.slug }))} />
           </nav>
         </header>
 
         <main style={{ flex: 1 }}>{children}</main>
 
-        {/* Footer */}
         <footer style={{
           background: 'var(--color-midnight)',
           padding: '52px',

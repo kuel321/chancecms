@@ -1,4 +1,6 @@
+'use client'
 import React from 'react'
+import { motion } from 'framer-motion'
 import type { Page, Media } from '@/payload-types'
 import RichText from '@/components/RichText'
 
@@ -14,13 +16,23 @@ function resolveHref(link: Page['hero']['link']): string {
   return '#'
 }
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+}
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  show:   { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+}
+
 export function Hero({ hero }: HeroProps) {
   if (!hero || hero.type === 'none') return null
 
   const { type, richText, link, media } = hero
   const mediaUrl = media && typeof media === 'object' ? (media as Media).url : null
 
-  /* ── High Impact: full-height split (text left, pine panel right) ── */
+  /* ── High Impact ── */
   if (type === 'highImpact') {
     return (
       <section style={{
@@ -33,7 +45,6 @@ export function Hero({ hero }: HeroProps) {
         overflow: 'hidden',
         position: 'relative',
       }}>
-        {/* subtle radial glows */}
         <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
           background: `
@@ -42,8 +53,12 @@ export function Hero({ hero }: HeroProps) {
           `,
         }} />
 
-        {/* Text side */}
-        <div style={{ padding: '100px 64px 80px', position: 'relative', zIndex: 2 }}>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          style={{ padding: '100px 64px 80px', position: 'relative', zIndex: 2 }}
+        >
           {richText && <RichText data={richText} enableGutter={false} />}
           {link?.label && (
             <div style={{ marginTop: 44 }}>
@@ -52,25 +67,33 @@ export function Hero({ hero }: HeroProps) {
               </a>
             </div>
           )}
-        </div>
+        </motion.div>
 
-        {/* Pine panel */}
-        <div style={{
-          height: '100%', minHeight: '94vh',
-          background: 'var(--color-pine)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          position: 'relative', zIndex: 2,
-        }}>
-          {mediaUrl
-            ? <img src={mediaUrl} alt="" style={{ height: 200, filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.35))' }} />
-            : <img src="/media/chance-logo-no-letters-png.png" alt="" style={{ height: 200, opacity: 0.6 }} />
-          }
-        </div>
+        <motion.div
+          variants={fadeIn}
+          initial="hidden"
+          animate="show"
+          style={{
+            height: '100%', minHeight: '94vh',
+            background: 'var(--color-pine)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            position: 'relative', zIndex: 2,
+          }}
+        >
+          <motion.img
+            src={mediaUrl ?? '/media/chance-logo-no-letters-png.png'}
+            alt=""
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: mediaUrl ? 1 : 0.6, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{ height: 200, filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.35))' }}
+          />
+        </motion.div>
       </section>
     )
   }
 
-  /* ── Medium Impact: text + image side by side on cream bg ── */
+  /* ── Medium Impact ── */
   if (type === 'mediumImpact') {
     return (
       <section style={{
@@ -78,12 +101,8 @@ export function Hero({ hero }: HeroProps) {
         borderBottom: '1px solid var(--color-rule)',
         padding: '80px 52px',
       }}>
-        <div style={{
-          maxWidth: 1100, margin: '0 auto',
-          display: 'flex', gap: 64, alignItems: 'center',
-          flexWrap: 'wrap',
-        }}>
-          <div style={{ flex: '1 1 320px' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: 64, alignItems: 'center', flexWrap: 'wrap' }}>
+          <motion.div variants={fadeUp} initial="hidden" animate="show" style={{ flex: '1 1 320px' }}>
             {richText && <RichText data={richText} enableGutter={false} />}
             {link?.label && (
               <div style={{ marginTop: 32 }}>
@@ -92,25 +111,31 @@ export function Hero({ hero }: HeroProps) {
                 </a>
               </div>
             )}
-          </div>
+          </motion.div>
           {mediaUrl && (
-            <div style={{ flex: '1 1 320px' }}>
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              animate="show"
+              transition={{ delay: 0.2 }}
+              style={{ flex: '1 1 320px' }}
+            >
               <img src={mediaUrl} alt="" style={{ width: '100%', display: 'block' }} />
-            </div>
+            </motion.div>
           )}
         </div>
       </section>
     )
   }
 
-  /* ── Low Impact: simple text banner ── */
+  /* ── Low Impact ── */
   return (
     <section style={{
       background: 'var(--color-cream)',
       borderBottom: '1px solid var(--color-rule)',
       padding: '72px 52px',
     }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+      <motion.div variants={fadeUp} initial="hidden" animate="show" style={{ maxWidth: 1100, margin: '0 auto' }}>
         {richText && <RichText data={richText} enableGutter={false} />}
         {link?.label && (
           <div style={{ marginTop: 28 }}>
@@ -119,7 +144,7 @@ export function Hero({ hero }: HeroProps) {
             </a>
           </div>
         )}
-      </div>
+      </motion.div>
     </section>
   )
 }

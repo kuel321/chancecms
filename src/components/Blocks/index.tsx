@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Page } from '@/payload-types'
+import { Reveal } from '@/components/Reveal'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
@@ -18,28 +19,28 @@ export function Blocks({ blocks }: { blocks: LayoutBlock[] }) {
   return (
     <>
       {blocks.map((block, i) => {
-        switch (block.blockType) {
-          case 'cta':
-            return <CallToActionBlock key={i} {...block} />
-          case 'content':
-            return <ContentBlock key={i} {...block} />
-          case 'mediaBlock':
-            return <MediaBlock key={i} {...block} />
-          case 'archive':
-            return <ArchiveBlock key={i} {...block} />
-          case 'formBlock':
-            return <FormBlock key={i} {...block} />
-          case 'meetTheCandidate':
-            return <MeetTheCandidateBlock key={i} {...block} />
-          case 'fightingFor':
-            return <FightingForBlock key={i} {...block} />
-          case 'newsletter':
-            return <NewsletterBlock key={i} {...block} />
-          case 'socialMedia':
-            return <SocialMediaBlock key={i} {...block} />
-          default:
-            return null
-        }
+        const el = (() => {
+          switch (block.blockType) {
+            case 'cta':            return <CallToActionBlock {...block} />
+            case 'content':        return <ContentBlock {...block} />
+            case 'mediaBlock':     return <MediaBlock {...block} />
+            case 'archive':        return <ArchiveBlock {...block} />
+            case 'formBlock':      return <FormBlock {...block} />
+            case 'meetTheCandidate': return <MeetTheCandidateBlock {...block} />
+            case 'fightingFor':    return <FightingForBlock {...block} />
+            case 'newsletter':     return <NewsletterBlock {...block} />
+            case 'socialMedia':    return <SocialMediaBlock {...block} />
+            default:               return null
+          }
+        })()
+
+        if (!el) return null
+
+        return (
+          <Reveal key={i} delay={0.05}>
+            {el}
+          </Reveal>
+        )
       })}
     </>
   )
