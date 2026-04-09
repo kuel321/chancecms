@@ -1,8 +1,17 @@
 import React from 'react'
-import type { CallToActionBlock as CallToActionBlockProps } from '@/payload-types'
+import type { CallToActionBlock as CallToActionBlockProps, Page, Post } from '@/payload-types'
 import RichText from '@/components/RichText'
 
-function resolveHref(link: CallToActionBlockProps['links'][number]['link']): string {
+type CTALink = {
+  type?: 'reference' | 'custom' | null
+  newTab?: boolean | null
+  reference?: { relationTo: 'pages'; value: number | Page } | { relationTo: 'posts'; value: number | Post } | null
+  url?: string | null
+  label: string
+  appearance?: 'default' | 'outline' | null
+}
+
+function resolveHref(link: CTALink): string {
   if (link.type === 'custom') return link.url ?? '#'
   if (typeof link.reference?.value === 'object') {
     const val = link.reference.value as { slug?: string }
