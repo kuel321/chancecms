@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import { NavLinks } from '@/components/NavLinks'
 import './globals.css'
 
 export default function FrontendLayout({ children }: { children: React.ReactNode }) {
@@ -20,23 +21,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
             <img src="/media/chance-logo-no-letters-png.png" alt="ChanceCMS" style={{ height: 46 }} />
           </Link>
           <nav style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
-            {[
-              { href: '/', label: 'Home' },
-              { href: '/posts', label: 'News' },
-              { href: '/about', label: 'About' },
-              { href: '/contact', label: 'Contact' },
-            ].map(({ href, label }) => (
-              <Link key={href} href={href} style={{
-                fontSize: 10, fontWeight: 700, letterSpacing: '0.2em',
-                textTransform: 'uppercase', color: 'var(--color-muted)',
-                textDecoration: 'none',
-              }}
-                onMouseOver={e => (e.currentTarget.style.color = 'var(--color-ember)')}
-                onMouseOut={e => (e.currentTarget.style.color = 'var(--color-muted)')}
-              >
-                {label}
-              </Link>
-            ))}
+            <NavLinks />
             <Link href="/admin" className="btn-dark" style={{ padding: '9px 20px' }}>
               Admin
             </Link>
