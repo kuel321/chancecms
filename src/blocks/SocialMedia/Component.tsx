@@ -12,18 +12,18 @@ const platformLabels: Record<string, string> = {
 
 export function SocialMediaBlock({ heading, links }: SocialMediaBlockProps) {
   return (
-    <section className="py-12 border-t border-gray-100">
-      <div className="max-w-5xl mx-auto px-6 text-center">
-        {heading && <h2 className="text-2xl font-bold mb-6">{heading}</h2>}
+    <section style={{ background: 'var(--color-parchment)', borderTop: '1px solid var(--color-rule)', borderBottom: '1px solid var(--color-rule)', padding: '64px 52px' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', textAlign: 'center' }}>
+        {heading && <h2 className="sec-heading" style={{ marginBottom: 32 }}>{heading}</h2>}
         {links && links.length > 0 && (
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
             {links.map((item, i) => (
               <a
                 key={i}
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2 border border-gray-300 rounded-full text-sm hover:border-gray-500 transition-colors"
+                className="btn-outline"
               >
                 {platformLabels[item.platform] ?? item.platform}
               </a>

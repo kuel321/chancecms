@@ -6,19 +6,25 @@ export function MeetTheCandidateBlock({ heading, bio, image }: MeetTheCandidateB
   const imageUrl = image && typeof image === 'object' ? (image as Media).url : null
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row gap-10 items-center">
+    <section style={{ background: 'var(--color-cream)', borderTop: '1px solid var(--color-rule)', borderBottom: '1px solid var(--color-rule)', padding: '88px 52px' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: 64, alignItems: 'center', flexWrap: 'wrap' }}>
         {imageUrl && (
-          <div className="flex-shrink-0">
-            <img
-              src={imageUrl}
-              alt={heading ?? 'Candidate'}
-              className="w-64 h-64 object-cover rounded-full shadow-md"
-            />
+          <div style={{ flexShrink: 0 }}>
+            <img src={imageUrl} alt={heading ?? 'Candidate'} style={{
+              width: 280, height: 340, objectFit: 'cover',
+              display: 'block',
+            }} />
           </div>
         )}
-        <div className="flex-1">
-          {heading && <h2 className="text-3xl font-bold mb-4">{heading}</h2>}
+        <div style={{ flex: '1 1 320px' }}>
+          {heading && (
+            <>
+              <p className="sec-label">Meet the Candidate</p>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 400, color: 'var(--color-midnight)', marginBottom: 24, lineHeight: 1.15 }}>
+                {heading}
+              </h2>
+            </>
+          )}
           {bio && <RichText data={bio} enableGutter={false} />}
         </div>
       </div>

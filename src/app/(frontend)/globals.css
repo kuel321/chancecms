@@ -1,1 +1,105 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap');
+
+@theme {
+  --color-pine:      #00260f;
+  --color-midnight:  #002202;
+  --color-ember:     #f15a24;
+  --color-linen:     #f0e0c7;
+  --color-cream:     #faf5ec;
+  --color-parchment: #f4ead4;
+  --color-text:      #0e1a10;
+  --color-muted:     rgba(14,26,16,0.45);
+  --color-rule:      rgba(0,38,15,0.1);
+
+  --font-sans:   'Lato', sans-serif;
+  --font-serif:  'Playfair Display', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-linen);
+  color: var(--color-text);
+}
+
+/* Utility classes used across block components */
+.btn-dark {
+  display: inline-block;
+  padding: 13px 30px;
+  background: var(--color-midnight);
+  color: var(--color-linen);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-dark:hover { background: var(--color-pine); }
+
+.btn-outline {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 1.5px solid rgba(0,38,15,0.2);
+  color: var(--color-pine);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.btn-outline:hover { border-color: var(--color-pine); }
+
+.btn-ember {
+  display: inline-block;
+  padding: 13px 30px;
+  background: var(--color-ember);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.btn-ember:hover { opacity: 0.88; }
+
+.sec-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  margin-bottom: 12px;
+}
+
+.sec-heading {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--color-midnight);
+  margin-bottom: 40px;
+}
+
+.payload-richtext h1,
+.payload-richtext h2,
+.payload-richtext h3,
+.payload-richtext h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--color-midnight);
+  line-height: 1.15;
+  margin-bottom: 0.5em;
+}
+.payload-richtext h1 { font-size: clamp(36px, 5vw, 56px); }
+.payload-richtext h2 { font-size: clamp(24px, 3vw, 34px); }
+.payload-richtext h3 { font-size: 22px; }
+.payload-richtext p  { font-weight: 300; line-height: 1.85; color: var(--color-muted); margin-bottom: 1em; }
+.payload-richtext a  { color: var(--color-ember); text-decoration: underline; }
+.payload-richtext strong { font-weight: 700; color: var(--color-text); }
+.payload-richtext em { font-style: italic; color: var(--color-pine); }

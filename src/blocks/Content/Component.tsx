@@ -1,23 +1,20 @@
 import React from 'react'
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 import RichText from '@/components/RichText'
-import { cn } from '@/utilities/ui'
 
-const sizeMap = {
-  oneThird: 'md:col-span-4',
-  half: 'md:col-span-6',
-  twoThirds: 'md:col-span-8',
-  full: 'md:col-span-12',
-}
+const spanMap = { oneThird: '33%', half: '50%', twoThirds: '66%', full: '100%' }
 
 export function ContentBlock({ columns }: ContentBlockProps) {
   if (!columns?.length) return null
 
   return (
-    <section className="py-12">
-      <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-12 gap-8">
+    <section style={{ padding: '88px 52px' }}>
+      <div style={{
+        maxWidth: 1100, margin: '0 auto',
+        display: 'flex', flexWrap: 'wrap', gap: 40,
+      }}>
         {columns.map((col, i) => (
-          <div key={i} className={cn('col-span-12', sizeMap[col.size ?? 'full'])}>
+          <div key={i} style={{ flex: `1 1 ${spanMap[col.size ?? 'full']}`, minWidth: 280 }}>
             {col.richText && <RichText data={col.richText} enableGutter={false} />}
             {col.enableLink && col.link && (
               <a
@@ -30,7 +27,8 @@ export function ContentBlock({ columns }: ContentBlockProps) {
                 }
                 target={col.link.newTab ? '_blank' : undefined}
                 rel={col.link.newTab ? 'noopener noreferrer' : undefined}
-                className="inline-block mt-4 text-sm font-medium underline hover:no-underline"
+                className={col.link.appearance === 'outline' ? 'btn-outline' : 'btn-dark'}
+                style={{ marginTop: 24 }}
               >
                 {col.link.label}
               </a>

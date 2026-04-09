@@ -1,6 +1,5 @@
 import React from 'react'
 import type { MediaBlock as MediaBlockProps, Media } from '@/payload-types'
-import { cn } from '@/utilities/ui'
 
 type Props = MediaBlockProps & {
   className?: string
@@ -13,33 +12,19 @@ type Props = MediaBlockProps & {
 export function MediaBlock({
   media,
   position = 'default',
-  className,
-  imgClassName,
-  captionClassName,
   enableGutter = true,
   disableInnerContainer = false,
 }: Props) {
   if (!media || typeof media !== 'object') return null
-
-  const { url, alt, caption } = media as Media
-
+  const { url, alt } = media as Media
   if (!url) return null
 
   const isFullscreen = position === 'fullscreen'
 
   return (
-    <section className={cn('py-8', isFullscreen ? 'w-full' : '', className)}>
-      <div className={cn(!disableInnerContainer && enableGutter ? 'max-w-5xl mx-auto px-6' : '')}>
-        <img
-          src={url}
-          alt={alt ?? ''}
-          className={cn('w-full rounded-lg object-cover', imgClassName)}
-        />
-        {caption && (
-          <p className={cn('text-sm text-gray-500 mt-2 text-center', captionClassName)}>
-            {typeof caption === 'string' ? caption : ''}
-          </p>
-        )}
+    <section style={{ padding: isFullscreen ? 0 : '40px 52px' }}>
+      <div style={!disableInnerContainer && enableGutter && !isFullscreen ? { maxWidth: 1100, margin: '0 auto' } : {}}>
+        <img src={url} alt={alt ?? ''} style={{ width: '100%', display: 'block' }} />
       </div>
     </section>
   )
