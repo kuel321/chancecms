@@ -18,7 +18,7 @@ Open `.env` and update the following values:
 
 | Variable | What to set |
 |---|---|
-| `DATABASE_URL` | Path to the SQLite file, e.g. `file:./clientname.db` |
+| `DATABASE_URL` | Path for the SQLite file, e.g. `file:./clientname.db` — Payload creates this file automatically on first run, you don't need to create it yourself |
 | `PAYLOAD_SECRET` | Any long random string — used to sign JWTs |
 | `NEXT_PUBLIC_SERVER_URL` | `http://localhost:3000` for local dev |
 | `CRON_SECRET` | Any random string — used to secure the cron endpoint |
