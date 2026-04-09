@@ -29,13 +29,13 @@ Open `.env` and update the following values:
 ### 2. Install dependencies
 
 ```bash
-pnpm install
+npm install
 ```
 
 ### 3. Start the dev server
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 ### 4. Create your first admin user
