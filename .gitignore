@@ -9,6 +9,11 @@ build
 next-env.d.ts
 .vercel
 
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
 # Payload default media upload directory
 
 
