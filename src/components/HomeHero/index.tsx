@@ -1,0 +1,83 @@
+'use client'
+import { motion } from 'framer-motion'
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+}
+
+export function HomeHero() {
+  return (
+    <section style={{
+      background: 'var(--color-cream)',
+      minHeight: '94vh',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      alignItems: 'center',
+      borderBottom: '1px solid var(--color-rule)',
+      overflow: 'hidden',
+      position: 'relative',
+    }}>
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: `
+          radial-gradient(ellipse 55% 70% at 75% 55%, rgba(241,90,36,0.05) 0%, transparent 65%),
+          radial-gradient(ellipse 40% 60% at 5%  40%, rgba(0,38,15,0.04)  0%, transparent 60%)
+        `,
+      }} />
+
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        animate="show"
+        style={{ padding: '100px 64px 80px', position: 'relative', zIndex: 2 }}
+      >
+        <p style={{
+          fontSize: 10, fontWeight: 700, letterSpacing: '0.35em',
+          textTransform: 'uppercase', color: 'var(--color-ember)', marginBottom: 22,
+        }}>
+          Political Campaign Websites
+        </p>
+        <h1 style={{
+          fontFamily: 'var(--font-serif)',
+          fontSize: 'clamp(40px, 5vw, 64px)',
+          fontWeight: 400, lineHeight: 1.1,
+          color: 'var(--color-midnight)', marginBottom: 26,
+        }}>
+          Campaigns built to <em style={{ fontStyle: 'italic', color: 'var(--color-pine)' }}>win.</em>
+        </h1>
+        <p style={{
+          fontSize: 16, fontWeight: 300, lineHeight: 1.85,
+          color: 'var(--color-muted)', maxWidth: 420, marginBottom: 44,
+        }}>
+          ChanceCMS delivers fast, modern campaign websites — purpose-built for candidates who are serious about reaching voters.
+        </p>
+        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+          <a href="#portfolio" className="btn-dark">See Our Work</a>
+          <a href="#contact" className="btn-outline">Get Started</a>
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        style={{
+          height: '100%', minHeight: '94vh',
+          background: 'var(--color-pine)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          position: 'relative', zIndex: 2,
+        }}
+      >
+        <motion.img
+          src="/media/chance-logo-no-letters-png.png"
+          alt="ChanceCMS"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 0.7, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          style={{ height: 200, filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.35))' }}
+        />
+      </motion.div>
+    </section>
+  )
+}

@@ -12,8 +12,6 @@ import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
-import { MeetTheCandidate } from '../../blocks/MeetTheCandidate/config'
-import { FightingFor } from '../../blocks/FightingFor/config'
 import { Newsletter } from '../../blocks/Newsletter/config'
 import { SocialMedia } from '../../blocks/SocialMedia/config'
 
@@ -76,7 +74,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, MeetTheCandidate, FightingFor, Newsletter, SocialMedia],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Newsletter, SocialMedia],
               required: true,
               admin: {
                 initCollapsed: true,
