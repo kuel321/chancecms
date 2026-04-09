@@ -8,7 +8,7 @@ export function HomeCMS() {
 
   return (
     <section style={{
-      background: 'var(--color-parchment)',
+      background: 'var(--color-pine)',
       borderTop: '1px solid var(--color-rule)',
       borderBottom: '1px solid var(--color-rule)',
       padding: '88px 52px',
@@ -28,23 +28,23 @@ export function HomeCMS() {
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(26px, 3.5vw, 42px)',
             fontWeight: 400, lineHeight: 1.15,
-            color: 'var(--color-midnight)', marginBottom: 24,
+            color: 'var(--color-linen)', marginBottom: 24,
           }}>
             A minimal, elegant<br />editing experience.
           </h2>
           <p style={{
             fontSize: 15, fontWeight: 300, lineHeight: 1.85,
-            color: 'var(--color-muted)', marginBottom: 20,
+            color: 'var(--color-linen)', marginBottom: 20,
           }}>
             Every site we build is powered by a clean, purpose-built admin panel. No bloated dashboards, no overwhelming menus — just a focused interface that makes updating your content feel effortless.
           </p>
           <p style={{
             fontSize: 15, fontWeight: 300, lineHeight: 1.85,
-            color: 'var(--color-muted)', marginBottom: 36,
+            color: 'var(--color-linen)', marginBottom: 36,
           }}>
             Publish a post, update your homepage, or add new pages — all without touching a line of code.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, color: 'var(--color-linen)' }}>
             {[
               'Draft & publish workflow',
               'Live preview as you edit',
@@ -54,9 +54,9 @@ export function HomeCMS() {
               <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <div style={{
                   width: 6, height: 6, borderRadius: '50%',
-                  background: 'var(--color-ember)', flexShrink: 0,
+                  background: 'var(--color-linen)', flexShrink: 0,
                 }} />
-                <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--color-text)' }}>{item}</span>
+                <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--color-linen)' }}>{item}</span>
               </div>
             ))}
           </div>
@@ -70,12 +70,7 @@ export function HomeCMS() {
           style={{ flex: '1 1 420px', position: 'relative' }}
         >
           {/* Decorative pine bar behind the screenshot */}
-          <div style={{
-            position: 'absolute',
-            top: 24, right: -24, bottom: -24, left: 24,
-            background: 'var(--color-pine)',
-            zIndex: 0,
-          }} />
+          <div />
           <img
             src="/media/hh-cms-new-1.png"
             alt="ChanceCMS admin interface"

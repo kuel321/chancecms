@@ -67,15 +67,26 @@ export function HomeHero() {
           background: 'var(--color-pine)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           position: 'relative', zIndex: 2,
+          overflow: 'hidden',
         }}
       >
+        {/* Icon fades in first */}
         <motion.img
           src="/media/chance-logo-no-letters-png.png"
-          alt="ChanceCMS"
+          alt=""
           initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 0.7, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          style={{ height: 200, filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.35))' }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          style={{ height: 200, position: 'absolute', filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.35))' }}
+        />
+        {/* Full logo with letters fades in over the icon */}
+        <motion.img
+          src="/CHASING-A-CHANCE-REAL-FINAL-W-LETTERS.svg"
+          alt="Chasing a Chance"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.1, delay: 1.0, ease: 'easeInOut' }}
+          style={{ height: 200, position: 'relative', filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.35))' }}
         />
       </motion.div>
     </section>

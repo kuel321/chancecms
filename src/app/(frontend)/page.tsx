@@ -39,8 +39,9 @@ export default async function HomePage() {
   return (
     <>
       <HomeHero />
+        <HomeCMS />
       <HomePortfolio projects={projects} />
-      <HomeCMS />
+    
       <HomeLatestNews posts={posts} />
       <HomeCTA />
       <HomeNewsletter />
