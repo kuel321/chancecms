@@ -33,7 +33,11 @@ export default async function FrontendLayout({ children }: { children: React.Rea
           padding: '10px 52px',
         }}>
           <Link href="/">
-            <img src="/media/chance-logo-no-letters-png.png" alt="ChanceCMS" style={{ height: 46 }} />
+          <div className='logo-and-title'>
+  <img src="/media/chance-logo-no-letters-png.png" alt="ChanceCMS" style={{ height: 46 }} />
+            <div className='logo-title'>Chasing a Chance </div>
+          </div>
+          
           </Link>
           <nav style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
             <NavLinks pages={pages.map(p => ({ title: p.title, slug: p.slug }))} />

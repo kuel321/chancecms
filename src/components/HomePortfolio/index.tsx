@@ -75,7 +75,7 @@ export function HomePortfolio({ projects }: { projects: Project[] }) {
     <section id="portfolio" style={{ padding: '88px 52px', borderBottom: '1px solid var(--color-rule)' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <p className="sec-label">Our Work</p>
-        <h2 className="sec-heading">Campaign sites we've built</h2>
+        <h2 className="sec-heading">Websites we've built</h2>
 
         {projects.length === 0 ? (
           <p style={{ color: 'var(--color-muted)', fontWeight: 300, fontStyle: 'italic' }}>

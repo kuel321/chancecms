@@ -3,6 +3,7 @@ import configPromise from '@payload-config'
 import type { Post, Media } from '@/payload-types'
 import { HomeHero } from '@/components/HomeHero'
 import { HomePortfolio } from '@/components/HomePortfolio'
+import { HomeCMS } from '@/components/HomeCMS'
 import { HomeLatestNews } from '@/components/HomeLatestNews'
 import { HomeCTA } from '@/components/HomeCTA'
 import { HomeNewsletter } from '@/components/HomeNewsletter'
@@ -39,6 +40,7 @@ export default async function HomePage() {
     <>
       <HomeHero />
       <HomePortfolio projects={projects} />
+      <HomeCMS />
       <HomeLatestNews posts={posts} />
       <HomeCTA />
       <HomeNewsletter />

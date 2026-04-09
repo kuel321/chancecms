@@ -36,7 +36,7 @@ export function HomeHero() {
           fontSize: 10, fontWeight: 700, letterSpacing: '0.35em',
           textTransform: 'uppercase', color: 'var(--color-ember)', marginBottom: 22,
         }}>
-          Political Campaign Websites
+          Websites & Software Solutions
         </p>
         <h1 style={{
           fontFamily: 'var(--font-serif)',
@@ -44,13 +44,13 @@ export function HomeHero() {
           fontWeight: 400, lineHeight: 1.1,
           color: 'var(--color-midnight)', marginBottom: 26,
         }}>
-          Campaigns built to <em style={{ fontStyle: 'italic', color: 'var(--color-pine)' }}>win.</em>
+          Digital products built to <em style={{ fontStyle: 'italic', color: 'var(--color-pine)' }}>perform.</em>
         </h1>
         <p style={{
           fontSize: 16, fontWeight: 300, lineHeight: 1.85,
           color: 'var(--color-muted)', maxWidth: 420, marginBottom: 44,
         }}>
-          ChanceCMS delivers fast, modern campaign websites — purpose-built for candidates who are serious about reaching voters.
+          We design and develop fast, modern websites and scalable software solutions for businesses ready to grow, streamline operations, and stand out online.
         </p>
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
           <a href="#portfolio" className="btn-dark">See Our Work</a>
