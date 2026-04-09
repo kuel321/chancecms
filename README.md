@@ -2,6 +2,54 @@
 
 This repository is a neutral, ready-to-use ChanceCMS website template built on top of the official [Payload Website Template](https://github.com/payloadcms/payload/blob/main/templates/website). Use it to power websites, blogs, or portfolios. It includes a working backend, admin panel, and a production-ready Next.js front-end.
 
+---
+
+## New Client Setup
+
+Steps to take every time you spin this up for a new client.
+
+### 1. Copy and fill in the `.env`
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` and update the following values:
+
+| Variable | What to set |
+|---|---|
+| `DATABASE_URL` | Path to the SQLite file, e.g. `file:./clientname.db` |
+| `PAYLOAD_SECRET` | Any long random string — used to sign JWTs |
+| `NEXT_PUBLIC_SERVER_URL` | `http://localhost:3000` for local dev |
+| `CRON_SECRET` | Any random string — used to secure the cron endpoint |
+| `PREVIEW_SECRET` | Any random string — used to validate draft preview requests |
+
+> The database file (`.db`) is gitignored, so each environment gets its own fresh database.
+
+### 2. Install dependencies
+
+```bash
+pnpm install
+```
+
+### 3. Start the dev server
+
+```bash
+pnpm dev
+```
+
+### 4. Create your first admin user
+
+Open [http://localhost:3000/admin](http://localhost:3000/admin) — Payload will prompt you to create the first admin account on a fresh database.
+
+### 5. (Optional) Seed demo content
+
+After logging in, the admin dashboard shows a **"Seed your database"** button. Clicking it will populate the site with example pages and posts so you have something to work with immediately.
+
+> Warning: seeding drops and recreates the database. Only use it on a fresh setup.
+
+---
+
 This template is right for you if you are working on:
 
 - A personal or enterprise-grade website, blog, or portfolio
