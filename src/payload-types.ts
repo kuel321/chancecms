@@ -109,14 +109,8 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {
-    header: Header;
-    footer: Footer;
-  };
-  globalsSelect: {
-    header: HeaderSelect<false> | HeaderSelect<true>;
-    footer: FooterSelect<false> | FooterSelect<true>;
-  };
+  globals: {};
+  globalsSelect: {};
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -175,30 +169,25 @@ export interface Page {
       };
       [k: string]: unknown;
     } | null;
-    links?:
-      | {
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            reference?:
-              | ({
-                  relationTo: 'pages';
-                  value: number | Page;
-                } | null)
-              | ({
-                  relationTo: 'posts';
-                  value: number | Post;
-                } | null);
-            url?: string | null;
-            label: string;
-            /**
-             * Choose how the link should be rendered.
-             */
-            appearance?: ('default' | 'outline') | null;
-          };
-          id?: string | null;
-        }[]
-      | null;
+    link?: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+      /**
+       * Choose how the link should be rendered.
+       */
+      appearance?: ('default' | 'outline') | null;
+    };
     media?: (number | null) | Media;
   };
   layout: (
@@ -552,8 +541,8 @@ export interface ContentBlock {
  * via the `definition` "MediaBlock".
  */
 export interface MediaBlock {
+  position?: ('default' | 'fullscreen') | null;
   media: number | Media;
-  maxWidth?: ('full' | 'xl' | 'lg' | 'md' | 'sm') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
@@ -797,13 +786,8 @@ export interface Form {
  * via the `definition` "MeetTheCandidateBlock".
  */
 export interface MeetTheCandidateBlock {
-  image: number | Media;
-  /**
-   * Small label above the name (e.g. "Meet")
-   */
-  eyebrow?: string | null;
-  name: string;
-  bio: {
+  heading?: string | null;
+  bio?: {
     root: {
       type: string;
       children: {
@@ -817,23 +801,8 @@ export interface MeetTheCandidateBlock {
       version: number;
     };
     [k: string]: unknown;
-  };
-  links?:
-    | {
-        link: {
-          label: string;
-          type?: ('reference' | 'custom') | null;
-          reference?: (number | null) | Page;
-          url?: string | null;
-          newTab?: boolean | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Which side the photo appears on
-   */
-  imagePosition?: ('left' | 'right') | null;
+  } | null;
+  image?: (number | null) | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'meetTheCandidate';
@@ -843,17 +812,9 @@ export interface MeetTheCandidateBlock {
  * via the `definition` "FightingForBlock".
  */
 export interface FightingForBlock {
-  /**
-   * Small label above the heading
-   */
-  eyebrow?: string | null;
-  heading: string;
+  heading?: string | null;
   issues?:
     | {
-        /**
-         * Paste a single emoji or symbol, e.g. 💧 🏥 ⚒️
-         */
-        icon?: string | null;
         title: string;
         description?: {
           root: {
@@ -882,16 +843,9 @@ export interface FightingForBlock {
  * via the `definition` "NewsletterBlock".
  */
 export interface NewsletterBlock {
-  eyebrow?: string | null;
-  heading: string;
-  subtext?: string | null;
-  placeholder?: string | null;
+  heading?: string | null;
+  subheading?: string | null;
   buttonLabel?: string | null;
-  successMessage?: string | null;
-  /**
-   * Create a form in the Forms admin with a single Email field, then link it here. Submissions will appear under Form Submissions.
-   */
-  form: number | Form;
   id?: string | null;
   blockName?: string | null;
   blockType: 'newsletter';
@@ -901,15 +855,10 @@ export interface NewsletterBlock {
  * via the `definition` "SocialMediaBlock".
  */
 export interface SocialMediaBlock {
-  eyebrow?: string | null;
   heading?: string | null;
-  accounts?:
+  links?:
     | {
-        platform: 'facebook' | 'twitter' | 'instagram' | 'youtube' | 'tiktok' | 'linkedin' | 'website';
-        /**
-         * Overrides the default platform name, e.g. "@ChanceCMS"
-         */
-        label?: string | null;
+        platform: 'facebook' | 'twitter' | 'instagram' | 'youtube' | 'linkedin' | 'tiktok';
         url: string;
         id?: string | null;
       }[]
@@ -1201,20 +1150,15 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         type?: T;
         richText?: T;
-        links?:
+        link?:
           | T
           | {
-              link?:
-                | T
-                | {
-                    type?: T;
-                    newTab?: T;
-                    reference?: T;
-                    url?: T;
-                    label?: T;
-                    appearance?: T;
-                  };
-              id?: T;
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
             };
         media?: T;
       };
@@ -1300,8 +1244,8 @@ export interface ContentBlockSelect<T extends boolean = true> {
  * via the `definition` "MediaBlock_select".
  */
 export interface MediaBlockSelect<T extends boolean = true> {
+  position?: T;
   media?: T;
-  maxWidth?: T;
   id?: T;
   blockName?: T;
 }
@@ -1335,25 +1279,9 @@ export interface FormBlockSelect<T extends boolean = true> {
  * via the `definition` "MeetTheCandidateBlock_select".
  */
 export interface MeetTheCandidateBlockSelect<T extends boolean = true> {
-  image?: T;
-  eyebrow?: T;
-  name?: T;
+  heading?: T;
   bio?: T;
-  links?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              label?: T;
-              type?: T;
-              reference?: T;
-              url?: T;
-              newTab?: T;
-            };
-        id?: T;
-      };
-  imagePosition?: T;
+  image?: T;
   id?: T;
   blockName?: T;
 }
@@ -1362,12 +1290,10 @@ export interface MeetTheCandidateBlockSelect<T extends boolean = true> {
  * via the `definition` "FightingForBlock_select".
  */
 export interface FightingForBlockSelect<T extends boolean = true> {
-  eyebrow?: T;
   heading?: T;
   issues?:
     | T
     | {
-        icon?: T;
         title?: T;
         description?: T;
         id?: T;
@@ -1380,13 +1306,9 @@ export interface FightingForBlockSelect<T extends boolean = true> {
  * via the `definition` "NewsletterBlock_select".
  */
 export interface NewsletterBlockSelect<T extends boolean = true> {
-  eyebrow?: T;
   heading?: T;
-  subtext?: T;
-  placeholder?: T;
+  subheading?: T;
   buttonLabel?: T;
-  successMessage?: T;
-  form?: T;
   id?: T;
   blockName?: T;
 }
@@ -1395,13 +1317,11 @@ export interface NewsletterBlockSelect<T extends boolean = true> {
  * via the `definition` "SocialMediaBlock_select".
  */
 export interface SocialMediaBlockSelect<T extends boolean = true> {
-  eyebrow?: T;
   heading?: T;
-  accounts?:
+  links?:
     | T
     | {
         platform?: T;
-        label?: T;
         url?: T;
         id?: T;
       };
@@ -1853,110 +1773,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header".
- */
-export interface Header {
-  id: number;
-  navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "footer".
- */
-export interface Footer {
-  id: number;
-  navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header_select".
- */
-export interface HeaderSelect<T extends boolean = true> {
-  navItems?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "footer_select".
- */
-export interface FooterSelect<T extends boolean = true> {
-  navItems?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "collections_widget".
  */
 export interface CollectionsWidget {
@@ -1986,42 +1802,6 @@ export interface TaskSchedulePublish {
     user?: (number | null) | User;
   };
   output?: unknown;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BannerBlock".
- */
-export interface BannerBlock {
-  style: 'info' | 'warning' | 'error' | 'success';
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'banner';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CodeBlock".
- */
-export interface CodeBlock {
-  language?: ('typescript' | 'javascript' | 'css') | null;
-  code: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'code';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
