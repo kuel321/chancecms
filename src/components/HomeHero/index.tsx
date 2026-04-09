@@ -18,13 +18,6 @@ export function HomeHero() {
       overflow: 'hidden',
       position: 'relative',
     }}>
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: `
-          radial-gradient(ellipse 55% 70% at 75% 55%, rgba(241,90,36,0.05) 0%, transparent 65%),
-          radial-gradient(ellipse 40% 60% at 5%  40%, rgba(0,38,15,0.04)  0%, transparent 60%)
-        `,
-      }} />
 
       <motion.div
         variants={fadeUp}
@@ -64,29 +57,17 @@ export function HomeHero() {
         transition={{ duration: 0.8, ease: 'easeOut' }}
         style={{
           height: '100%', minHeight: '94vh',
-          background: 'var(--color-pine)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           position: 'relative', zIndex: 2,
-          overflow: 'hidden',
         }}
       >
-        {/* Icon fades in first */}
         <motion.img
           src="/media/chance-logo-no-letters-png.png"
-          alt=""
+          alt="Chasing a Chance"
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          style={{ height: 200, position: 'absolute', filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.35))' }}
-        />
-        {/* Full logo with letters fades in over the icon */}
-        <motion.img
-          src="/CHASING-A-CHANCE-REAL-FINAL-W-LETTERS.svg"
-          alt="Chasing a Chance"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.1, delay: 1.0, ease: 'easeInOut' }}
-          style={{ height: 200, position: 'relative', filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.35))' }}
+          transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          style={{ height: 350 }}
         />
       </motion.div>
     </section>
