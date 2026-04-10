@@ -13,7 +13,7 @@ async function getPublishedPages() {
     select: { title: true, slug: true },
     sort: 'title',
     limit: 20,
-  })
+  }).catch(() => ({ docs: [] }))
   return result.docs
 }
 
