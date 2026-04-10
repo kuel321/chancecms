@@ -18,13 +18,13 @@ async function getData() {
       sort: '-publishedAt',
       limit: 3,
       depth: 1,
-    }),
+    }).catch(() => ({ docs: [] })),
     payload.find({
       collection: 'projects',
       sort: 'order',
       limit: 12,
       depth: 1,
-    }),
+    }).catch(() => ({ docs: [] })),
   ])
 
   return {
