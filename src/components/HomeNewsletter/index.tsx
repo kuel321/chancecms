@@ -1,6 +1,7 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { ease } from '@/utilities/motion'
 
 export function HomeNewsletter() {
   const ref = useRef<HTMLDivElement>(null)
@@ -12,7 +13,7 @@ export function HomeNewsletter() {
         ref={ref}
         initial={{ opacity: 0, y: 28 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.65, ease: ease }}
         style={{ maxWidth: 560, margin: '0 auto', textAlign: 'center' }}
       >
         <p style={{

@@ -3,6 +3,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import type { Page, Media } from '@/payload-types'
 import RichText from '@/components/RichText'
+import { ease } from '@/utilities/motion'
 
 type HeroProps = { hero: Page['hero'] }
 
@@ -18,7 +19,7 @@ function resolveHref(link: Page['hero']['link']): string {
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: ease } },
 }
 
 const fadeIn = {
@@ -85,7 +86,7 @@ export function Hero({ hero }: HeroProps) {
             alt=""
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: mediaUrl ? 1 : 0.6, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: ease }}
             style={{ height: 200, filter: 'drop-shadow(0 16px 48px rgba(0,0,0,0.35))' }}
           />
         </motion.div>

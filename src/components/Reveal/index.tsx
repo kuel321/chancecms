@@ -1,6 +1,7 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { ease } from '@/utilities/motion'
 
 type Props = {
   children: React.ReactNode
@@ -18,7 +19,7 @@ export function Reveal({ children, delay = 0, className, style }: Props) {
       ref={ref}
       initial={{ opacity: 0, y: 28 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.55, delay, ease: ease }}
       className={className}
       style={style}
     >

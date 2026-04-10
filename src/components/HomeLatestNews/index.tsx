@@ -2,6 +2,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import type { Post, Media } from '@/payload-types'
+import { ease } from '@/utilities/motion'
 
 function PostCard({ post, index }: { post: Post; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -20,7 +21,7 @@ function PostCard({ post, index }: { post: Post; index: number }) {
       href={`/posts/${post.slug}`}
       initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.55, delay: index * 0.1, ease: ease }}
       style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', color: 'inherit' }}
     >
       <div style={{

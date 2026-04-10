@@ -2,6 +2,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import type { Media } from '@/payload-types'
+import { ease } from '@/utilities/motion'
 
 type Project = {
   id: number
@@ -24,7 +25,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       ref={ref}
       initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, delay: (index % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.55, delay: (index % 3) * 0.1, ease: ease }}
       style={{ display: 'flex', flexDirection: 'column' }}
     >
       <div style={{

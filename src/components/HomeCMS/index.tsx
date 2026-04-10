@@ -1,6 +1,7 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { ease } from '@/utilities/motion'
 
 export function HomeCMS() {
   const ref = useRef<HTMLDivElement>(null)
@@ -20,7 +21,7 @@ export function HomeCMS() {
         <motion.div
           initial={{ opacity: 0, x: -32 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.65, ease: ease }}
           style={{ flex: '1 1 320px' }}
         >
           <p className="sec-label">The CMS</p>
@@ -66,7 +67,7 @@ export function HomeCMS() {
         <motion.div
           initial={{ opacity: 0, x: 32 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.65, delay: 0.15, ease: ease }}
           style={{ flex: '1 1 420px', position: 'relative' }}
         >
           {/* Decorative pine bar behind the screenshot */}
