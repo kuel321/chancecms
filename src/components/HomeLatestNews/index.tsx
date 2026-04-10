@@ -5,7 +5,7 @@ import type { Post, Media } from '@/payload-types'
 import { ease } from '@/utilities/motion'
 
 function PostCard({ post, index }: { post: Post; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLAnchorElement>(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   const imageUrl = post.heroImage && typeof post.heroImage === 'object'
     ? (post.heroImage as Media).url
