@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
+import type { Variants } from 'framer-motion'
 import type { Page, Media } from '@/payload-types'
 import RichText from '@/components/RichText'
 import { ease } from '@/utilities/motion'
@@ -17,12 +18,12 @@ function resolveHref(link: Page['hero']['link']): string {
   return '#'
 }
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },
   show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: ease } },
 }
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0 },
   show:   { opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
 }
