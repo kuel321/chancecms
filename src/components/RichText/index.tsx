@@ -18,7 +18,7 @@ import type {
   MediaBlock as MediaBlockProps,
 } from '@/payload-types'
 
-type BannerBlockProps = { style?: 'info' | 'warning' | 'error' | 'success' | null; content?: unknown }
+type BannerBlockProps = { style?: 'info' | 'warning' | 'error' | 'success' | null; content?: DefaultTypedEditorState }
 import { BannerBlock } from '@/blocks/Banner/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { cn } from '@/utilities/ui'
