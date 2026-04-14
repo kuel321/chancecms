@@ -117,3 +117,40 @@ body {
   font-weight: 400;
   color: var(--color-midnight);
 }
+
+@media (max-width: 768px) {
+  .hero-section {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto;
+    min-height: unset !important;
+    padding-bottom: 60px;
+  }
+
+  .hero-section > *:first-child {
+    padding: 60px 28px 32px !important;
+    order: 2;
+  }
+
+  .hero-section > *:last-child {
+    min-height: unset !important;
+    padding: 48px 0 0;
+    order: 1;
+  }
+
+  .hero-section img {
+    height: 220px !important;
+  }
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/grain.gif');
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 9999;
+}

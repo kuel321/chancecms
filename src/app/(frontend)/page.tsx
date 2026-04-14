@@ -4,6 +4,7 @@ import type { Post, Media } from '@/payload-types'
 import { HomeHero } from '@/components/HomeHero'
 import { HomePortfolio } from '@/components/HomePortfolio'
 import { HomeCMS } from '@/components/HomeCMS'
+import { HomeCMSFeatures } from '@/components/HomeCMSFeatures'
 import { HomeLatestNews } from '@/components/HomeLatestNews'
 import { HomeCTA } from '@/components/HomeCTA'
 import { HomeNewsletter } from '@/components/HomeNewsletter'
@@ -39,7 +40,8 @@ export default async function HomePage() {
   return (
     <>
       <HomeHero />
-        <HomeCMS />
+      <HomeCMS />
+      <HomeCMSFeatures />
       <HomePortfolio projects={projects} />
     
       <HomeLatestNews posts={posts} />

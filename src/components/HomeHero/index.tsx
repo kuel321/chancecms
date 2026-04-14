@@ -10,7 +10,7 @@ const fadeUp: Variants = {
 
 export function HomeHero() {
   return (
-    <section style={{
+    <section className="hero-section" style={{
       background: 'var(--color-cream)',
       minHeight: '94vh',
       display: 'grid',

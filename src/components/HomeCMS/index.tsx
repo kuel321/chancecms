@@ -70,8 +70,6 @@ export function HomeCMS() {
           transition={{ duration: 0.65, delay: 0.15, ease: ease }}
           style={{ flex: '1 1 420px', position: 'relative' }}
         >
-          {/* Decorative pine bar behind the screenshot */}
-          <div />
           <img
             src="/media/hh-cms-new-1.png"
             alt="ChanceCMS admin interface"
@@ -80,7 +78,8 @@ export function HomeCMS() {
               display: 'block',
               position: 'relative',
               zIndex: 1,
-              boxShadow: '0 24px 64px rgba(0,0,0,0.15)',
+              borderRadius: 6,
+              boxShadow: '0 24px 64px rgba(0,0,0,0.3)',
             }}
           />
         </motion.div>
