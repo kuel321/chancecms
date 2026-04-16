@@ -119,6 +119,18 @@ body {
 }
 
 @media (max-width: 768px) {
+  .pricing-section {
+    padding: 60px 20px !important;
+  }
+
+  .pricing-form {
+    padding: 32px 20px !important;
+  }
+
+  .pricing-form-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+
   .hero-section {
     grid-template-columns: 1fr !important;
     grid-template-rows: auto auto;

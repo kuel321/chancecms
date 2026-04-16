@@ -129,7 +129,7 @@ export function HomePortfolio({ projects }: { projects: Project[] }) {
     >
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <p className="sec-label">Our Work</p>
-        <h2 className="sec-heading">Websites we've built</h2>
+        <h2 className="sec-heading">Here's some of our work</h2>
 
         {projects.length === 0 ? (
           <p style={{ color: 'var(--color-muted)', fontWeight: 300, fontStyle: 'italic' }}>

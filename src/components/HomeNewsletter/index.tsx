@@ -26,7 +26,7 @@ export function HomeNewsletter() {
             marginBottom: 16,
           }}
         >
-          Stay in the Loop
+          Free Tips for Local Business Owners
         </p>
         <h2
           style={{
@@ -38,7 +38,7 @@ export function HomeNewsletter() {
             lineHeight: 1.15,
           }}
         >
-          Get updates delivered to you.
+          Grow your business online. We&apos;ll show you how.
         </h2>
         <p
           style={{
@@ -49,7 +49,7 @@ export function HomeNewsletter() {
             marginBottom: 36,
           }}
         >
-          News, announcements, and resources.
+          Occasional tips on websites, local SEO, and tools that actually help small businesses. No fluff, no spam.
         </p>
         <form
           style={{ display: 'flex', gap: 0, maxWidth: 440, margin: '0 auto' }}

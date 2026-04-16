@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { NavLinks } from '@/components/NavLinks'
+import { ScrollProgress } from '@/components/ScrollProgress'
+import { Footer } from '@/components/Footer'
 import './globals.css'
 
 async function getPublishedPages() {
@@ -26,6 +28,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
     <html lang="en">
       <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <div className="grain-overlay" />
+        <ScrollProgress />
         <header
           style={{
             position: 'sticky',
@@ -57,52 +60,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
 
         <main style={{ flex: 1 }}>{children}</main>
 
-        <footer
-          style={{
-            background: 'var(--color-midnight)',
-            padding: '52px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            borderTop: '1px solid rgba(240,224,199,0.06)',
-          }}
-        >
-          <img
-            src="/media/chance-logo-no-letters-png.png"
-            alt="ChanceCMS"
-            style={{ height: 60, opacity: 0.7 }}
-          />
-          <div style={{ textAlign: 'right' }}>
-            <p
-              style={{
-                fontSize: 10,
-                fontWeight: 700,
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: 'rgba(240,224,199,0.4)',
-                marginBottom: 8,
-              }}
-            >
-              Powered by ChanceCMS
-            </p>
-            <p
-              style={{
-                fontFamily: 'var(--font-serif)',
-                fontStyle: 'italic',
-                fontSize: 15,
-                color: 'rgba(240,224,199,0.2)',
-              }}
-            >
-              Building experiences that matter.
-            </p>
-            <a
-              href="mailto:chasingachancellc@gmail.com"
-              style={{ fontSize: 13, color: 'rgba(240,224,199,0.3)' }}
-            >
-              chasingachancellc@gmail.com
-            </a>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   )

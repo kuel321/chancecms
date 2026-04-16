@@ -1,13 +1,14 @@
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
-import type { Post, Media } from '@/payload-types'
+import type { Post } from '@/payload-types'
 import { HomeHero } from '@/components/HomeHero'
 import { HomePortfolio } from '@/components/HomePortfolio'
 import { HomeCMS } from '@/components/HomeCMS'
 import { HomeCMSFeatures } from '@/components/HomeCMSFeatures'
 import { HomeLatestNews } from '@/components/HomeLatestNews'
 import { HomeCTA } from '@/components/HomeCTA'
-import { HomeNewsletter } from '@/components/HomeNewsletter'
+import { HomeServices } from '@/components/HomeServices'
+import { HomePricing } from '@/components/HomePricing'
 
 async function getData() {
   const payload = await getPayload({ config: configPromise })
@@ -40,13 +41,14 @@ export default async function HomePage() {
   return (
     <>
       <HomeHero />
+      <HomeServices />
       <HomeCMS />
       <HomeCMSFeatures />
       <HomePortfolio projects={projects} />
     
       <HomeLatestNews posts={posts} />
+      <HomePricing />
       <HomeCTA />
-      <HomeNewsletter />
     </>
   )
 }
