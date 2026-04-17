@@ -1,12 +1,13 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
+import type { UseInViewOptions } from 'framer-motion'
 
 /**
  * Like framer-motion's useInView({ once: true }) but also triggers immediately
  * if the element is already in the viewport on mount (e.g. navigated to via hash link).
  */
-export function useIsVisible(margin = '-60px') {
+export function useIsVisible(margin: UseInViewOptions['margin'] = '-60px') {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin })
   const [alreadyVisible, setAlreadyVisible] = useState(false)
