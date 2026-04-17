@@ -33,7 +33,6 @@ export function WordReveal({
       {words.map((word, i) => (
         <span key={i} style={{ overflow: 'hidden', display: 'inline-block', lineHeight: 'inherit' }}>
           <motion.span
-            display="inline-block"
             initial={{ y: '110%', opacity: 0 }}
             animate={inView ? { y: '0%', opacity: 1 } : {}}
             transition={{ duration: 0.65, delay: delay + i * stagger, ease: ease }}
