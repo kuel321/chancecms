@@ -49,13 +49,15 @@ export function HomeNewsletter() {
             marginBottom: 36,
           }}
         >
-          Occasional tips on websites, local SEO, and tools that actually help small businesses. No fluff, no spam.
+          Occasional tips on websites, local SEO, and tools that actually help small businesses. No
+          fluff, no spam.
         </p>
         <form
           style={{ display: 'flex', gap: 0, maxWidth: 440, margin: '0 auto' }}
           onSubmit={(e) => e.preventDefault()}
         >
           <input
+            className="newsletter-email-input"
             type="email"
             placeholder="Your email address"
             style={{

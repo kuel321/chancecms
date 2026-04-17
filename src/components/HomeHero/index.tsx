@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import { useRef } from 'react'
 import { ease } from '@/utilities/motion'
+import { WordReveal } from '@/components/WordReveal'
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },
@@ -51,19 +52,20 @@ export function HomeHero() {
         >
           Web Design & Software for Local Business
         </p>
-        <h1
+        <WordReveal
+          text="Your business deserves a website that actually works."
+          as="h1"
+          delay={0.2}
+          stagger={0.06}
           style={{
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(40px, 5vw, 64px)',
             fontWeight: 400,
-            lineHeight: 1.1,
+            lineHeight: 1.15,
             color: 'var(--color-midnight)',
             marginBottom: 26,
           }}
-        >
-          Your business deserves a website that actually{' '}
-          <em style={{ fontStyle: 'italic', color: 'var(--color-pine)' }}>works.</em>
-        </h1>
+        />
         <p
           style={{
             fontFamily: 'var(--font-serif)',

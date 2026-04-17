@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { ease } from '@/utilities/motion'
 import type { Variants } from 'framer-motion'
+import { WordReveal } from '@/components/WordReveal'
 
 const services = [
   {
@@ -50,9 +51,12 @@ export function HomeServices() {
     >
       <div ref={ref} style={{ maxWidth: 1100, margin: '0 auto' }}>
         <p className="sec-label">What We Do</p>
-        <h2 className="sec-heading" style={{ marginBottom: 60 }}>
-          Services built for real businesses.
-        </h2>
+        <WordReveal
+          text="Services built for real businesses."
+          as="h2"
+          className="sec-heading"
+          style={{ marginBottom: 60 }}
+        />
 
         <div
           style={{
@@ -99,7 +103,7 @@ export function HomeServices() {
               <p
                 style={{
                   fontSize: 13,
-                  fontWeight: 300,
+                  fontWeight: 400,
                   lineHeight: 1.8,
                   color: 'var(--color-muted)',
                   flex: 1,
@@ -108,7 +112,7 @@ export function HomeServices() {
                 {service.description}
               </p>
               <a
-                href="mailto:chasingachancellc@gmail.com"
+                href="#contact"
                 style={{
                   fontSize: 10,
                   fontWeight: 700,

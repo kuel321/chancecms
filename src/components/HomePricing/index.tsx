@@ -1,8 +1,10 @@
 'use client'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 import { ease } from '@/utilities/motion'
 import type { Variants } from 'framer-motion'
+import { WordReveal } from '@/components/WordReveal'
+import { useIsVisible } from '@/utilities/useIsVisible'
 
 type Tier = {
   name: string
@@ -22,14 +24,14 @@ type Tier = {
 const tiers: Tier[] = [
   {
     name: 'Monthly Option',
-    price: '$300 / mo',
+    price: '$300 / month',
     care: '12 months, then care plan',
     who: 'Want to get online without writing a big check upfront.',
     outcome:
       'We build and launch your site, you pay monthly. Hosting included for the full year, then rolls into a care plan.',
     details: {
       heading: 'Same site, spread out over 12 months.',
-      body: 'This is not a watered-down version of anything. You get a fully custom site built the same way as any other project. The only difference is how you pay for it. $300 a month for 12 months covers the design, the build, and hosting for that entire year. When the 12 months are up, your site is yours and you move onto a standard $150/mo care plan.',
+      body: 'This is not a watered-down version of anything. You get a fully custom site built the same way as any other project. The only difference is how you pay for it. $300 a month for 12 months covers the design, the build, and hosting for that entire year. When the 12 months are up, your site is yours and you move onto a standard $150 / month care plan.',
       includes: [
         'Full custom design and development',
         'Hosting included for 12 months',
@@ -45,7 +47,7 @@ const tiers: Tier[] = [
   {
     name: 'Grow',
     price: '$4,000 – $5,000',
-    care: '$200 / mo care plan',
+    care: '$200 / month care plan',
     who: 'Businesses that publish content, capture leads, and want to build an audience over time.',
     outcome:
       'A full content platform — blog, newsletter, analytics, and lead capture — not just a brochure site.',
@@ -61,7 +63,7 @@ const tiers: Tier[] = [
         'Advanced SEO configuration',
         'Lead capture forms',
         'Content workflow for your team',
-        '$200 / mo care plan (hosting, updates, support)',
+        '$200 / month care plan (hosting, updates, support)',
       ],
       notFor:
         'If you just need a clean site with your services, hours, and a contact form — Launch is the right fit and will save you money.',
@@ -70,7 +72,7 @@ const tiers: Tier[] = [
   {
     name: 'Launch',
     price: '$2,000 – $2,500',
-    care: '$150 / mo care plan',
+    care: '$150 / month care plan',
     who: 'Service businesses that need to look professional and be easy to find online.',
     outcome:
       'A clean, fast, fully custom site that represents your business well and gets out of your way.',
@@ -85,7 +87,7 @@ const tiers: Tier[] = [
         'Basic SEO setup',
         'Smooth animations (Framer Motion)',
         'Content management — update it yourself',
-        '$150 / mo care plan (hosting, updates, support)',
+        '$150 / month care plan (hosting, updates, support)',
       ],
       notFor:
         'If you need a blog, newsletter, or want to actively publish content to grow an audience, Grow is the better fit.',
@@ -261,8 +263,7 @@ function TierDrawer({ tier, onClose }: { tier: Tier; onClose: () => void }) {
 }
 
 export function HomePricing() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
+  const { ref, visible: inView } = useIsVisible()
   const [activeDrawer, setActiveDrawer] = useState<Tier | null>(null)
 
   const [form, setForm] = useState({
@@ -334,7 +335,7 @@ export function HomePricing() {
             style={{ marginBottom: 64 }}
           >
             <p className="sec-label">Pricing</p>
-            <h2 className="sec-heading">Simple, honest pricing.</h2>
+            <WordReveal text="Simple, honest pricing." as="h2" className="sec-heading" />
             <p
               style={{
                 fontSize: 15,
@@ -578,6 +579,7 @@ export function HomePricing() {
             transition={{ duration: 0.65, delay: 0.3, ease: ease }}
             className="pricing-form"
             style={{
+              scrollMarginTop: 96,
               background: 'var(--color-parchment)',
               border: '1px solid var(--color-rule)',
               padding: '56px 52px',
@@ -696,18 +698,34 @@ export function HomePricing() {
                   <label style={labelStyle}>Preferred contact method</label>
                   <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginTop: 4 }}>
                     {['Email', 'Phone call', 'Text message'].map((method) => (
-                      <label key={method} style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 13, fontWeight: 300, color: 'var(--color-midnight)' }}>
+                      <label
+                        key={method}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 8,
+                          cursor: 'pointer',
+                          fontSize: 13,
+                          fontWeight: 300,
+                          color: 'var(--color-midnight)',
+                        }}
+                      >
                         <input
                           type="checkbox"
                           checked={contactMethods.includes(method)}
                           onChange={() =>
-                            setContactMethods(prev =>
+                            setContactMethods((prev) =>
                               prev.includes(method)
-                                ? prev.filter(m => m !== method)
-                                : [...prev, method]
+                                ? prev.filter((m) => m !== method)
+                                : [...prev, method],
                             )
                           }
-                          style={{ accentColor: 'var(--color-pine)', width: 15, height: 15, cursor: 'pointer' }}
+                          style={{
+                            accentColor: 'var(--color-pine)',
+                            width: 15,
+                            height: 15,
+                            cursor: 'pointer',
+                          }}
                         />
                         {method}
                       </label>

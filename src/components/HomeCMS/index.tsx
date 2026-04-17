@@ -43,10 +43,11 @@ export function HomeCMS() {
         <motion.img
           src="/CHASING-A-CHANCE-REAL-FINAL-W-LETTERS.svg"
           alt=""
+          className="background-logo"
           initial={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}
           animate={logoInView ? { clipPath: 'inset(0% 0 0 0)', opacity: 0.18 } : {}}
           transition={{ duration: 1.4, ease: ease, delay: 0.3 }}
-          style={{ height: 700, display: 'block', position: 'relative', right: 60, bottom: 30 }}
+          style={{}}
         />
       </motion.div>
       <div

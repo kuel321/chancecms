@@ -8,6 +8,7 @@ import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { NewsletterBlock } from '@/blocks/Newsletter/Component'
 import { SocialMediaBlock } from '@/blocks/SocialMedia/Component'
+import { PageHeroBlock } from '@/blocks/PageHero/Component'
 
 type LayoutBlock = Page['layout'][number]
 
@@ -19,6 +20,7 @@ export function Blocks({ blocks }: { blocks: LayoutBlock[] }) {
       {blocks.map((block, i) => {
         const el = (() => {
           switch (block.blockType) {
+            case 'pageHero':   return <PageHeroBlock {...(block as any)} />
             case 'cta':        return <CallToActionBlock {...block} />
             case 'content':    return <ContentBlock {...block} />
             case 'mediaBlock': return <MediaBlock {...block} />

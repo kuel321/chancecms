@@ -193,6 +193,14 @@ export interface Page {
     media?: (number | null) | Media;
   };
   layout: (
+    | {
+        label?: string | null;
+        heading: string;
+        subheading?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pageHero';
+      }
     | CallToActionBlock
     | ContentBlock
     | MediaBlock
@@ -1129,6 +1137,15 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        pageHero?:
+          | T
+          | {
+              label?: T;
+              heading?: T;
+              subheading?: T;
+              id?: T;
+              blockName?: T;
+            };
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;

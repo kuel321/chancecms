@@ -14,6 +14,7 @@ import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
 import { Newsletter } from '../../blocks/Newsletter/config'
 import { SocialMedia } from '../../blocks/SocialMedia/config'
+import { PageHero } from '../../blocks/PageHero/config'
 
 import {
   MetaDescriptionField,
@@ -74,7 +75,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Newsletter, SocialMedia],
+              blocks: [PageHero, CallToAction, Content, MediaBlock, Archive, FormBlock, Newsletter, SocialMedia],
               required: true,
               admin: {
                 initCollapsed: true,

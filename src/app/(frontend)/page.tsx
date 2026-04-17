@@ -41,7 +41,7 @@ export default async function HomePage() {
   return (
     <>
       <HomeHero />
-      <HomeServices />
+<HomeServices />
       <HomeCMS />
       <HomeCMSFeatures />
       <HomePortfolio projects={projects} />

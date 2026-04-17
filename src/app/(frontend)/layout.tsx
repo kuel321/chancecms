@@ -29,32 +29,45 @@ export default async function FrontendLayout({ children }: { children: React.Rea
       <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <div className="grain-overlay" />
         <ScrollProgress />
-        <header
-          style={{
-            position: 'sticky',
-            top: 0,
-            zIndex: 100,
-            background: 'rgba(240,224,199,0.96)',
-            backdropFilter: 'blur(14px)',
-            borderBottom: '1px solid var(--color-rule)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '10px 52px',
-          }}
-        >
+        <header className="site-header">
           <Link href="/">
             <div className="logo-and-title">
               <img
                 src="/media/chance-logo-no-letters-png.png"
                 alt="ChanceCMS"
-                style={{ height: 46 }}
+                className="site-header-logo"
               />
-              <div className="logo-title">Chasing a Chance </div>
+              <div className="logo-title">Chasing a Chance</div>
             </div>
           </Link>
           <nav style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
+            <Link
+              href="/"
+              style={{
+                fontSize: 10,
+                fontWeight: 700,
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: 'var(--color-muted)',
+                textDecoration: 'none',
+              }}
+            >
+              Home
+            </Link>
             <NavLinks pages={pages.map((p) => ({ title: p.title, slug: p.slug }))} />
+            <Link
+              href="/about"
+              style={{
+                fontSize: 10,
+                fontWeight: 700,
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: 'var(--color-muted)',
+                textDecoration: 'none',
+              }}
+            >
+              About
+            </Link>
           </nav>
         </header>
 
