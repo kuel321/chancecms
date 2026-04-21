@@ -48,7 +48,7 @@ body {
 
 .btn-outline {
   display: inline-block;
-  padding: 12px 28px;
+  padding: 11.5px 28.5px;
   border: 1.5px solid rgba(0,38,15,0.2);
   color: var(--color-pine);
   font-size: 10px;

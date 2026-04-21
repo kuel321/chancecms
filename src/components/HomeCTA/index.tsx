@@ -37,7 +37,7 @@ export function HomeCTA() {
           Whether you need a simple site up this week or a custom solution built from scratch, we&apos;ll figure out what makes sense for your business and make it happen.
         </p>
         <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="mailto:chasingachancellc@gmail.com" className="btn-ember">Get a Free Quote</a>
+          <a href="/#contact" className="btn-ember">Get a Free Quote</a>
           <a href="#portfolio" className="btn-outline" style={{ borderColor: 'rgba(240,224,199,0.25)', color: 'var(--color-linen)' }}>
             See Our Work
           </a>
