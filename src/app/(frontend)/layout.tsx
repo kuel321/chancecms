@@ -1,5 +1,13 @@
+import type { Metadata } from 'next'
 import React from 'react'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  icons: {
+    icon: '/media/chance-logo-no-letters-png.png',
+    apple: '/media/chance-logo-no-letters-png.png',
+  },
+}
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { NavLinks } from '@/components/NavLinks'
