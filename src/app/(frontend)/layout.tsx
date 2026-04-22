@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://chasingachance.com'),
   icons: {
     icon: '/media/chance-logo-no-letters-png.png',
     apple: '/media/chance-logo-no-letters-png.png',
