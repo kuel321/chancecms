@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import React from 'react'
 import Link from 'next/link'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   icons: {
@@ -82,6 +83,14 @@ export default async function FrontendLayout({ children }: { children: React.Rea
         <main style={{ flex: 1 }}>{children}</main>
 
         <Footer />
+
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-J4P4LTCB7Z" strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-J4P4LTCB7Z');
+        `}</Script>
       </body>
     </html>
   )
