@@ -84,6 +84,25 @@ export default async function FrontendLayout({ children }: { children: React.Rea
 
         <Footer />
 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'LocalBusiness',
+            name: 'Chasing a Chance',
+            description: 'Web design and custom software for local businesses in West Virginia.',
+            url: 'https://chasingachance.com',
+            logo: 'https://chasingachance.com/media/chance-logo-no-letters-png.png',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Hurricane',
+              addressRegion: 'WV',
+              addressCountry: 'US',
+            },
+            areaServed: 'West Virginia',
+            sameAs: [],
+          })}}
+        />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-J4P4LTCB7Z" strategy="afterInteractive" />
         <Script id="gtag-init" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
