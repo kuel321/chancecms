@@ -53,7 +53,7 @@ export function HomeHero() {
           Web Design & Software for Local Business
         </p>
         <WordReveal
-          text="Your website should be your best employee."
+          text="Your competitors bought a template. You can do better."
           as="h1"
           delay={0.2}
           stagger={0.06}
@@ -75,11 +75,10 @@ export function HomeHero() {
             lineHeight: 1.85,
             color: 'var(--color-pine)',
             maxWidth: 420,
-            position: 'relative',
-            top: -20,
+            marginBottom: 16,
           }}
         >
-          (And looks good too)
+          No WordPress. No AI filler. No shortcuts.
         </p>
         <p
           style={{
@@ -91,8 +90,8 @@ export function HomeHero() {
             marginBottom: 44,
           }}
         >
-          We build fast, professional websites and custom software for local businesses. Simple
-          sites that get you found online, or full tools that run your operations.
+          We write every line from scratch and hand you a CMS so simple your whole team can use it.
+          No plugins to babysit, no themes to fight with.
         </p>
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
           <a href="#portfolio" className="btn-dark">
