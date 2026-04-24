@@ -48,6 +48,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
                 className="site-header-logo"
               />
               <div className="logo-title">Chasing a Chance</div>
+              <div className="logo-tagline">Big attention. Small studio.</div>
             </div>
           </Link>
           <nav style={{ display: 'flex', gap: 28, alignItems: 'center' }}>

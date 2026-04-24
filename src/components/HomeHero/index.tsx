@@ -53,7 +53,7 @@ export function HomeHero() {
           Web Design & Software for Local Business
         </p>
         <WordReveal
-          text="Your business deserves a website that actually works."
+          text="Your website should be your best employee."
           as="h1"
           delay={0.2}
           stagger={0.06}
