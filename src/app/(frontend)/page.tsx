@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: 'West Virginia web design and custom software for local businesses. Fast, professional websites that get you found online.',
     url: 'https://chasingachance.com',
     siteName: 'Chasing a Chance',
-    images: [{ url: '/website-template-OG.webp' }],
+    images: [{ url: '/meta-image.jpg' }],
     type: 'website',
   },
 }
