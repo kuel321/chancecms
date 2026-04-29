@@ -5,6 +5,9 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Chasing a Chance | Web Design & Custom Software — Hurricane, WV',
   description: 'West Virginia web design and custom software for local businesses. Fast, professional websites that get you found online. Based in Hurricane, WV.',
+  alternates: {
+    canonical: 'https://chasingachance.com/',
+  },
   openGraph: {
     title: 'Chasing a Chance | Web Design & Custom Software — Hurricane, WV',
     description: 'West Virginia web design and custom software for local businesses. Fast, professional websites that get you found online.',
