@@ -67,6 +67,19 @@ export default async function FrontendLayout({ children }: { children: React.Rea
             </Link>
             <NavLinks pages={pages.map((p) => ({ title: p.title, slug: p.slug }))} />
             <Link
+              href="/posts"
+              style={{
+                fontSize: 10,
+                fontWeight: 700,
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: 'var(--color-muted)',
+                textDecoration: 'none',
+              }}
+            >
+              Updates
+            </Link>
+            <Link
               href="/about"
               style={{
                 fontSize: 10,
