@@ -32,17 +32,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? (meta.image as Media).url ?? undefined
       : undefined
 
+  const title = meta?.title ?? `${post.title} | Chasing a Chance`
+  const description = meta?.description ?? undefined
+  const images = ogImage
+    ? [{ url: ogImage, width: 1200, height: 630, alt: post.title }]
+    : [{ url: '/meta-image.jpg', width: 1200, height: 630, alt: post.title }]
+
   return {
-    title: meta?.title ?? `${post.title} | Chasing a Chance`,
-    description: meta?.description ?? undefined,
+    title,
+    description,
     alternates: { canonical: `https://chasingachance.com/posts/${slug}` },
     openGraph: {
       title: meta?.title ?? post.title,
-      description: meta?.description ?? undefined,
+      description,
       url: `${getServerSideURL()}/posts/${slug}`,
       siteName: 'Chasing a Chance',
-      images: ogImage ? [{ url: ogImage }] : [{ url: '/meta-image.jpg' }],
+      images,
       type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta?.title ?? post.title,
+      description,
+      images: ogImage ? [ogImage] : ['/meta-image.jpg'],
     },
   }
 }
@@ -68,8 +80,29 @@ export default async function PostPage({ params }: Props) {
 
   const authors = post.populatedAuthors ?? []
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    ...(post.meta?.description && { description: post.meta.description }),
+    ...(post.publishedAt && { datePublished: post.publishedAt }),
+    dateModified: post.updatedAt,
+    image: heroUrl ?? `https://chasingachance.com/meta-image.jpg`,
+    url: `https://chasingachance.com/posts/${slug}`,
+    author: authors.length > 0
+      ? authors.map((a) => ({ '@type': 'Person', name: a.name }))
+      : [{ '@type': 'Organization', name: 'Chasing a Chance' }],
+    publisher: {
+      '@type': 'Organization',
+      name: 'Chasing a Chance',
+      logo: { '@type': 'ImageObject', url: 'https://chasingachance.com/media/chance-logo-no-letters-png.png' },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://chasingachance.com/posts/${slug}` },
+  }
+
   return (
     <article style={{ background: 'var(--color-cream)' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       {heroUrl && (
         <div
           style={{

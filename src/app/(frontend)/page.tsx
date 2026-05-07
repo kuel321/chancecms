@@ -13,8 +13,14 @@ export const metadata: Metadata = {
     description: 'West Virginia web design and custom software for local businesses. Fast, professional websites that get you found online.',
     url: 'https://chasingachance.com',
     siteName: 'Chasing a Chance',
-    images: [{ url: '/meta-image.jpg' }],
+    images: [{ url: '/meta-image.jpg', width: 1200, height: 630, alt: 'Chasing a Chance — Web Design & Custom Software' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Chasing a Chance | Web Design & Custom Software — Hurricane, WV',
+    description: 'West Virginia web design and custom software for local businesses. Fast, professional websites that get you found online.',
+    images: ['/meta-image.jpg'],
   },
 }
 

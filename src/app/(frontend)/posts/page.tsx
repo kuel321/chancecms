@@ -15,8 +15,14 @@ export const metadata: Metadata = {
     description: 'Web design tips, business insights, and updates from Chasing a Chance.',
     url: 'https://chasingachance.com/posts',
     siteName: 'Chasing a Chance',
-    images: [{ url: '/meta-image.jpg' }],
+    images: [{ url: '/meta-image.jpg', width: 1200, height: 630, alt: 'News & Updates — Chasing a Chance' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'News & Updates | Chasing a Chance',
+    description: 'Web design tips, business insights, and updates from Chasing a Chance — Hurricane, WV.',
+    images: ['/meta-image.jpg'],
   },
 }
 

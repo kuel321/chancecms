@@ -90,8 +90,9 @@ export function HomeHero() {
             marginBottom: 44,
           }}
         >
-          We write every line from scratch and hand you a CMS so simple your whole team can use it.
-          No plugins to babysit, no themes to fight with.
+          Custom web design and software for local businesses in Hurricane, WV and across West
+          Virginia. Every line written from scratch — no templates, no page builders, no plugins to
+          babysit.
         </p>
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
           <a href="#portfolio" className="btn-dark">

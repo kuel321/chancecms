@@ -27,6 +27,11 @@ export async function GET() {
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>${url}/posts</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 ${pages.docs.map(page => `  <url>
     <loc>${url}/${page.slug}</loc>
     <lastmod>${new Date(page.updatedAt as string).toISOString()}</lastmod>

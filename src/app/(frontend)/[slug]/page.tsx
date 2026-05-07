@@ -21,17 +21,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? (meta.image as Media).url ?? undefined
     : undefined
 
+  const title = meta?.title ?? page.title
+  const description = meta?.description ?? undefined
+  const images = ogImage
+    ? [{ url: ogImage, width: 1200, height: 630, alt: title }]
+    : [{ url: '/meta-image.jpg', width: 1200, height: 630, alt: title }]
+
   return {
-    title: meta?.title ?? page.title,
-    description: meta?.description ?? undefined,
+    title,
+    description,
     alternates: {
       canonical: `https://chasingachance.com/${slug}`,
     },
     openGraph: {
-      title: meta?.title ?? page.title,
-      description: meta?.description ?? undefined,
+      title,
+      description,
       url: `${getServerSideURL()}/${slug}`,
-      images: ogImage ? [{ url: ogImage }] : undefined,
+      siteName: 'Chasing a Chance',
+      images,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ogImage ? [ogImage] : ['/meta-image.jpg'],
     },
   }
 }

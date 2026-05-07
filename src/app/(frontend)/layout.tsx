@@ -44,7 +44,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
             <div className="logo-and-title">
               <img
                 src="/media/chance-logo-no-letters-png.png"
-                alt="ChanceCMS"
+                alt="Chasing a Chance"
                 className="site-header-logo"
               />
               <div className="logo-title">Chasing a Chance</div>
