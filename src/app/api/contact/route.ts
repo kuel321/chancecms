@@ -42,7 +42,7 @@ function buildEmail(data: {
   <div class="wrap">
     <div class="header">
       <h1>New Project Inquiry</h1>
-      <p>Chasing a Chance — chasingachance.com</p>
+      <p>Chasing a Chance, chasingachance.com</p>
     </div>
     <div class="body">
       <div class="field">
@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
       from: `"Chasing a Chance" <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
       replyTo: email,
-      subject: `New inquiry: ${service} — ${name}`,
+      subject: `New inquiry: ${service} from ${name}`,
       html: buildEmail({ name, email, phone, service, message, contactMethods }),
     })
 

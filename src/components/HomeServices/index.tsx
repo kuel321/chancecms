@@ -9,13 +9,13 @@ const services = [
   {
     label: 'Web Design & Development',
     description:
-      'Professional websites built from scratch. Fast, mobile-friendly, and designed to make a strong first impression. Every site uses Framer Motion for smooth animations — the same library powering Figma, Linear, and Vercel. We have built sites for local campaigns, small businesses, and media companies including WV Cams.',
+      'We\'ve been building web products since we created WV Cams, one of the most-visited sites in West Virginia. Every site is fast, mobile-friendly, and built with the same animation library powering Figma, Linear, and Vercel. No templates. No page builders. Just sites that work.',
     cta: 'Get a site built',
   },
   {
     label: 'Custom Software',
     description:
-      'When off-the-shelf tools fall short, we build the real thing. Custom dashboards, internal tools, and web applications tailored to how your business actually runs. Our work has supported clients ranging from local operations to the U.S. Department of Defense.',
+      'When off-the-shelf tools fall short, we build the real thing. Custom dashboards, internal tools, and SaaS applications built for how your business runs. Our work has supported clients from small businesses to the U.S. Department of Defense.',
     cta: 'Tell us what you need',
   },
 

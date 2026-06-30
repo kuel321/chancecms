@@ -67,7 +67,7 @@ export default function AboutPage() {
               marginBottom: 24,
             }}
           >
-            Hurricane, WV — Est. 2023
+            Hurricane, WV, Est. 2023
           </motion.p>
           <WordReveal
             text="Built around a very good boy."
@@ -238,7 +238,7 @@ export default function AboutPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             <FadeUp delay={0.1}>
               <WordReveal
-                text="We build things that actually work for the businesses that use them."
+                text="We build things that work for the businesses that use them."
                 as="h2"
                 style={{
                   fontFamily: 'var(--font-serif)',
@@ -278,7 +278,7 @@ export default function AboutPage() {
                 }}
               >
                 The approach is the same regardless of the project. Figure out what the client
-                actually needs, build it well, and make sure they can use it without a manual. No
+                needs, build it well, and make sure they can use it without a manual. No
                 bloated proposals. No mystery invoices. Just good work delivered straight.
               </p>
             </FadeUp>

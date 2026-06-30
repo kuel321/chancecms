@@ -47,7 +47,8 @@ export function HomeCMS() {
           initial={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}
           animate={logoInView ? { clipPath: 'inset(0% 0 0 0)', opacity: 0.18 } : {}}
           transition={{ duration: 1.4, ease: ease, delay: 0.3 }}
-          style={{}}
+          style={{ filter: 'blur(2px)'
+          }}
         />
       </motion.div>
       <div

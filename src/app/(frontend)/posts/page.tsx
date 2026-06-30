@@ -8,20 +8,20 @@ import { PostCard } from '@/components/PostCard'
 
 export const metadata: Metadata = {
   title: 'News & Updates | Chasing a Chance',
-  description: 'Web design tips, business insights, and updates from Chasing a Chance — Hurricane, WV.',
+  description: 'Web design tips, business insights, and updates from Chasing a Chance, Hurricane, WV.',
   alternates: { canonical: 'https://chasingachance.com/posts' },
   openGraph: {
     title: 'News & Updates | Chasing a Chance',
     description: 'Web design tips, business insights, and updates from Chasing a Chance.',
     url: 'https://chasingachance.com/posts',
     siteName: 'Chasing a Chance',
-    images: [{ url: '/meta-image.jpg', width: 1200, height: 630, alt: 'News & Updates — Chasing a Chance' }],
+    images: [{ url: '/meta-image.jpg', width: 1200, height: 630, alt: 'News & Updates, Chasing a Chance' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'News & Updates | Chasing a Chance',
-    description: 'Web design tips, business insights, and updates from Chasing a Chance — Hurricane, WV.',
+    description: 'Web design tips, business insights, and updates from Chasing a Chance, Hurricane, WV.',
     images: ['/meta-image.jpg'],
   },
 }
@@ -72,7 +72,7 @@ export default async function PostsPage() {
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '72px 52px' }}>
         {posts.length === 0 ? (
           <p style={{ color: 'var(--color-muted)', fontWeight: 300 }}>
-            No posts yet — check back soon.
+            No posts yet, check back soon.
           </p>
         ) : (
           <div

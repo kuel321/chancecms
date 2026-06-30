@@ -49,7 +49,7 @@ export function HomeNewsletter() {
             marginBottom: 36,
           }}
         >
-          Occasional tips on websites, local SEO, and tools that actually help small businesses. No
+          Occasional tips on websites, local SEO, and tools that help small businesses. No
           fluff, no spam.
         </p>
         <form

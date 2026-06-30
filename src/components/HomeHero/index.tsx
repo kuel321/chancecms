@@ -50,7 +50,7 @@ export function HomeHero() {
             marginBottom: 22,
           }}
         >
-          Web Design & Software for Local Business
+          Websites & Software, Built in West Virginia
         </p>
         <WordReveal
           text="Your competitors bought a template. You can do better."
@@ -90,9 +90,9 @@ export function HomeHero() {
             marginBottom: 44,
           }}
         >
-          Custom web design and software for local businesses in Hurricane, WV and across West
-          Virginia. Every line written from scratch — no templates, no page builders, no plugins to
-          babysit.
+          We&apos;ve been building websites and software in West Virginia since we created WV Cams.
+          Custom code, real design, and SaaS products that scale. No templates, no page builders,
+          no shortcuts.
         </p>
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
           <a href="#portfolio" className="btn-dark">

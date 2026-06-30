@@ -50,7 +50,7 @@ const tiers: Tier[] = [
     care: '$200 / month care plan',
     who: 'Businesses that publish content, capture leads, and want to build an audience over time.',
     outcome:
-      'A full content platform — blog, newsletter, analytics, and lead capture — not just a brochure site.',
+      'A full content platform: blog, newsletter, analytics, and lead capture, not just a brochure site.',
     featured: true,
     details: {
       heading: 'For businesses that need more than a static site.',
@@ -66,7 +66,7 @@ const tiers: Tier[] = [
         '$200 / month care plan (hosting, updates, support)',
       ],
       notFor:
-        'If you just need a clean site with your services, hours, and a contact form — Launch is the right fit and will save you money.',
+        'If you just need a clean site with your services, hours, and a contact form, Launch is the right fit and will save you money.',
     },
   },
   {
@@ -78,7 +78,7 @@ const tiers: Tier[] = [
       'A clean, fast, fully custom site that represents your business well and gets out of your way.',
     details: {
       heading: 'Get your business online the right way.',
-      body: 'Launch is for businesses that need a solid web presence — not a template, not a page builder, but a real custom site built for you. Your services, your story, your contact info, done well. Clients can find you, see what you do, and reach out. That is the job. We do it fast and we do it right.',
+      body: 'Launch is for businesses that need a solid web presence: not a template, not a page builder, but a real custom site built for you. Your services, your story, your contact info, done well. Clients can find you, see what you do, and reach out. That is the job. We do it fast and we do it right.',
       includes: [
         'Fully custom design (not a template)',
         'Up to 6 pages',
@@ -86,7 +86,7 @@ const tiers: Tier[] = [
         'Contact form',
         'Basic SEO setup',
         'Smooth animations (Framer Motion)',
-        'Content management — update it yourself',
+        'Content management, update it yourself',
         '$150 / month care plan (hosting, updates, support)',
       ],
       notFor:
@@ -345,7 +345,7 @@ export function HomePricing() {
                 maxWidth: 500,
               }}
             >
-              No surprise fees. No locked-in contracts. Every project includes a monthly care plan —
+              No surprise fees. No locked-in contracts. Every project includes a monthly care plan:
               hosting, updates, and a real person to call.
             </p>
           </motion.div>
@@ -562,7 +562,7 @@ export function HomePricing() {
                 }}
               >
                 If the tiers above don't fit what you need, let's talk. We scope custom projects
-                together — storefronts, internal tools, booking systems, web applications. If you
+                together: storefronts, internal tools, booking systems, web applications. If you
                 can describe the problem, we can build the solution.
               </p>
             </div>

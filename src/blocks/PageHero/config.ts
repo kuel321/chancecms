@@ -12,7 +12,7 @@ export const PageHero: Block = {
       type: 'text',
       label: 'Label (small text above heading)',
       admin: {
-        placeholder: 'e.g. Hurricane, WV — Est. 2023',
+        placeholder: 'e.g. Hurricane, WV, Est. 2023',
       },
     },
     {
