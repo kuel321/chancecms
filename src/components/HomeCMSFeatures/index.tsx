@@ -67,22 +67,9 @@ export function HomeCMSFeatures() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65, ease: ease }}
         >
-          <p className="sec-label" style={{ textAlign: 'center', marginBottom: 16 }}>
+          <p className="sec-label" style={{ textAlign: 'center', marginBottom: 20 }}>
             Under the Hood
           </p>
-          <h2
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(24px, 3vw, 38px)',
-              fontWeight: 400,
-              lineHeight: 1.15,
-              textAlign: 'center',
-              color: 'var(--color-linen)',
-              marginBottom: 16,
-            }}
-          >
-            Built to last, not just to launch.
-          </h2>
           <p
             style={{
               fontSize: 15,

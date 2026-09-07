@@ -113,13 +113,14 @@ export function Footer() {
           />
           <p
             style={{
-              fontFamily: 'var(--font-serif)',
-              fontStyle: 'italic',
-              fontSize: 14,
-              color: 'rgba(240,224,199,0.2)',
+              fontSize: 10,
+              fontWeight: 700,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: 'var(--color-ember)',
             }}
           >
-            Building experiences that matter.
+            Big attention. Small studio.
           </p>
         </div>
 

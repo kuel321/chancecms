@@ -346,7 +346,7 @@ export function HomePricing() {
               }}
             >
               No surprise fees. No locked-in contracts. Every project includes a monthly care plan:
-              hosting, updates, and a real person to call.
+              hosting, updates, and ongoing support.
             </p>
           </motion.div>
 
@@ -562,8 +562,8 @@ export function HomePricing() {
                 }}
               >
                 If the tiers above don't fit what you need, let's talk. We scope custom projects
-                together: storefronts, internal tools, booking systems, web applications. If you
-                can describe the problem, we can build the solution.
+                together: storefronts, internal tools, booking systems, web applications. If you can
+                describe the problem, we can build the solution.
               </p>
             </div>
             <a href="#contact" className="btn-ember" style={{ flexShrink: 0 }}>

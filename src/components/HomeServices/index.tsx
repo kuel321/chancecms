@@ -3,7 +3,6 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { ease } from '@/utilities/motion'
 import type { Variants } from 'framer-motion'
-import { WordReveal } from '@/components/WordReveal'
 
 const services = [
   {
@@ -50,13 +49,7 @@ export function HomeServices() {
       }}
     >
       <div ref={ref} style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <p className="sec-label">What We Do</p>
-        <WordReveal
-          text="Services built for real businesses."
-          as="h2"
-          className="sec-heading"
-          style={{ marginBottom: 60 }}
-        />
+        <p className="sec-label" style={{ marginBottom: 48 }}>What We Do</p>
 
         <div
           style={{
