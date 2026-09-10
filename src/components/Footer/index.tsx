@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { HideOnGallery } from '@/components/HideOnGallery'
 
 export function Footer() {
   const [email, setEmail] = useState('')
@@ -13,86 +14,88 @@ export function Footer() {
       }}
     >
       {/* Newsletter strip */}
-      <div
-        style={{
-          borderBottom: '1px solid rgba(240,224,199,0.06)',
-          padding: '40px 52px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 32,
-          flexWrap: 'wrap',
-        }}
-      >
-        <div>
-          <p
-            style={{
-              fontSize: 10,
-              fontWeight: 700,
-              letterSpacing: '0.25em',
-              textTransform: 'uppercase',
-              color: 'rgba(240,224,199,0.35)',
-              marginBottom: 6,
-            }}
-          >
-            Free Tips for Local Business Owners
-          </p>
-          <p
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 18,
-              fontWeight: 400,
-              color: 'var(--color-linen)',
-              lineHeight: 1.2,
-            }}
-          >
-            Grow your business online. We&apos;ll show you how.
-          </p>
-        </div>
-
-        {submitted ? (
-          <p
-            style={{
-              fontSize: 13,
-              fontWeight: 300,
-              color: 'rgba(240,224,199,0.4)',
-              fontStyle: 'italic',
-            }}
-          >
-            You&apos;re in. Talk soon.
-          </p>
-        ) : (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault()
-              setSubmitted(true)
-            }}
-            style={{ display: 'flex', gap: 0, flexShrink: 0 }}
-          >
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              placeholder="Your email address"
+      <HideOnGallery>
+        <div
+          style={{
+            borderBottom: '1px solid rgba(240,224,199,0.06)',
+            padding: '40px 52px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 32,
+            flexWrap: 'wrap',
+          }}
+        >
+          <div>
+            <p
               style={{
-                padding: '12px 16px',
-                background: 'rgba(240,224,199,0.06)',
-                border: '1px solid rgba(240,224,199,0.12)',
-                borderRight: 'none',
-                fontFamily: 'var(--font-sans)',
-                fontSize: 13,
-                color: 'var(--color-linen)',
-                outline: 'none',
-                width: 220,
+                fontSize: 10,
+                fontWeight: 700,
+                letterSpacing: '0.25em',
+                textTransform: 'uppercase',
+                color: 'rgba(240,224,199,0.35)',
+                marginBottom: 6,
               }}
-            />
-            <button type="submit" className="btn-ember" style={{ flexShrink: 0 }}>
-              Subscribe
-            </button>
-          </form>
-        )}
-      </div>
+            >
+              Free Tips for Local Business Owners
+            </p>
+            <p
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 18,
+                fontWeight: 400,
+                color: 'var(--color-linen)',
+                lineHeight: 1.2,
+              }}
+            >
+              Grow your business online. We&apos;ll show you how.
+            </p>
+          </div>
+
+          {submitted ? (
+            <p
+              style={{
+                fontSize: 13,
+                fontWeight: 300,
+                color: 'rgba(240,224,199,0.4)',
+                fontStyle: 'italic',
+              }}
+            >
+              You&apos;re in. Talk soon.
+            </p>
+          ) : (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                setSubmitted(true)
+              }}
+              style={{ display: 'flex', gap: 0, flexShrink: 0 }}
+            >
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="Your email address"
+                style={{
+                  padding: '12px 16px',
+                  background: 'rgba(240,224,199,0.06)',
+                  border: '1px solid rgba(240,224,199,0.12)',
+                  borderRight: 'none',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: 13,
+                  color: 'var(--color-linen)',
+                  outline: 'none',
+                  width: 220,
+                }}
+              />
+              <button type="submit" className="btn-ember" style={{ flexShrink: 0 }}>
+                Subscribe
+              </button>
+            </form>
+          )}
+        </div>
+      </HideOnGallery>
 
       {/* Bottom bar */}
       <div
@@ -137,12 +140,14 @@ export function Footer() {
           >
             Powered by ChanceCMS
           </p>
-          <a
-            href="mailto:chasingachancellc@gmail.com"
-            style={{ fontSize: 12, color: 'rgba(240,224,199,0.25)', textDecoration: 'none' }}
-          >
-            chasingachancellc@gmail.com
-          </a>
+          <HideOnGallery>
+            <a
+              href="mailto:chasingachancellc@gmail.com"
+              style={{ fontSize: 12, color: 'rgba(240,224,199,0.25)', textDecoration: 'none' }}
+            >
+              chasingachancellc@gmail.com
+            </a>
+          </HideOnGallery>
         </div>
       </div>
     </footer>

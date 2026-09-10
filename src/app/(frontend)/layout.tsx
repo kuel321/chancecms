@@ -15,6 +15,7 @@ import configPromise from '@payload-config'
 import { NavLinks } from '@/components/NavLinks'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import { Footer } from '@/components/Footer'
+import { HideOnGallery } from '@/components/HideOnGallery'
 import './globals.css'
 
 async function getPublishedPages() {
@@ -37,7 +38,9 @@ export default async function FrontendLayout({ children }: { children: React.Rea
   return (
     <html lang="en">
       <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <div className="grain-overlay" />
+        <HideOnGallery>
+          <div className="grain-overlay" />
+        </HideOnGallery>
         <ScrollProgress />
         <header className="site-header">
           <Link href="/">
@@ -51,48 +54,50 @@ export default async function FrontendLayout({ children }: { children: React.Rea
               <div className="logo-tagline">Big attention. Small studio.</div>
             </div>
           </Link>
-          <nav style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
-            <Link
-              href="/"
-              style={{
-                fontSize: 10,
-                fontWeight: 700,
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: 'var(--color-muted)',
-                textDecoration: 'none',
-              }}
-            >
-              Home
-            </Link>
-            <NavLinks pages={pages.map((p) => ({ title: p.title, slug: p.slug }))} />
-            <Link
-              href="/posts"
-              style={{
-                fontSize: 10,
-                fontWeight: 700,
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: 'var(--color-muted)',
-                textDecoration: 'none',
-              }}
-            >
-              Updates
-            </Link>
-            <Link
-              href="/about"
-              style={{
-                fontSize: 10,
-                fontWeight: 700,
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: 'var(--color-muted)',
-                textDecoration: 'none',
-              }}
-            >
-              About
-            </Link>
-          </nav>
+          <HideOnGallery>
+            <nav style={{ display: 'flex', gap: 18, alignItems: 'center' }}>
+              <Link
+                href="/"
+                style={{
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-muted)',
+                  textDecoration: 'none',
+                }}
+              >
+                Home
+              </Link>
+              <NavLinks pages={pages.map((p) => ({ title: p.title, slug: p.slug }))} />
+              <Link
+                href="/posts"
+                style={{
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-muted)',
+                  textDecoration: 'none',
+                }}
+              >
+                Updates
+              </Link>
+              <Link
+                href="/about"
+                style={{
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-muted)',
+                  textDecoration: 'none',
+                }}
+              >
+                About
+              </Link>
+            </nav>
+          </HideOnGallery>
         </header>
 
         <main style={{ flex: 1 }}>{children}</main>
@@ -101,24 +106,29 @@ export default async function FrontendLayout({ children }: { children: React.Rea
 
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
-            name: 'Chasing a Chance',
-            description: 'Web design and custom software for local businesses in West Virginia.',
-            url: 'https://chasingachance.com',
-            logo: 'https://chasingachance.com/media/chance-logo-no-letters-png.png',
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Hurricane',
-              addressRegion: 'WV',
-              addressCountry: 'US',
-            },
-            areaServed: 'West Virginia',
-            sameAs: [],
-          })}}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              name: 'Chasing a Chance',
+              description: 'Web design and custom software for local businesses in West Virginia.',
+              url: 'https://chasingachance.com',
+              logo: 'https://chasingachance.com/media/chance-logo-no-letters-png.png',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Hurricane',
+                addressRegion: 'WV',
+                addressCountry: 'US',
+              },
+              areaServed: 'West Virginia',
+              sameAs: [],
+            }),
+          }}
         />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-J4P4LTCB7Z" strategy="afterInteractive" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-J4P4LTCB7Z"
+          strategy="afterInteractive"
+        />
         <Script id="gtag-init" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}

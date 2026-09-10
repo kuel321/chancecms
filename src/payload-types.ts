@@ -73,6 +73,8 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    'client-files': ClientFile;
+    galleries: Gallery;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -86,7 +88,7 @@ export interface Config {
   };
   collectionsJoins: {
     'payload-folders': {
-      documentsAndFolders: 'payload-folders' | 'media';
+      documentsAndFolders: 'payload-folders' | 'media' | 'client-files';
     };
   };
   collectionsSelect: {
@@ -96,6 +98,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'client-files': ClientFilesSelect<false> | ClientFilesSelect<true>;
+    galleries: GalleriesSelect<false> | GalleriesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -388,13 +392,50 @@ export interface FolderInterface {
           relationTo?: 'media';
           value: number | Media;
         }
+      | {
+          relationTo?: 'client-files';
+          value: number | ClientFile;
+        }
     )[];
     hasNextPage?: boolean;
     totalDocs?: number;
   };
-  folderType?: 'media'[] | null;
+  folderType?: ('media' | 'client-files')[] | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "client-files".
+ */
+export interface ClientFile {
+  id: number;
+  /**
+   * Optional description of the file, shown to the client.
+   */
+  alt?: string | null;
+  folder?: (number | null) | FolderInterface;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -836,6 +877,35 @@ export interface Project {
   createdAt: string;
 }
 /**
+ * Password-protected galleries clients can use to view and download their files.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galleries".
+ */
+export interface Gallery {
+  id: number;
+  /**
+   * Internal name, e.g. the client or project name.
+   */
+  title: string;
+  /**
+   * Optional note shown to the client on the gallery page.
+   */
+  note?: string | null;
+  files: (number | ClientFile)[];
+  /**
+   * Password the client will enter to view this gallery. Leave blank when editing to keep the current password.
+   */
+  password?: string | null;
+  passwordHash?: string | null;
+  /**
+   * Used in the gallery link, e.g. /gallery/your-slug. Auto-filled from the title, or edit it if you want something different.
+   */
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
@@ -1048,6 +1118,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: number | User;
+      } | null)
+    | ({
+        relationTo: 'client-files';
+        value: number | ClientFile;
+      } | null)
+    | ({
+        relationTo: 'galleries';
+        value: number | Gallery;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1460,6 +1538,53 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "client-files_select".
+ */
+export interface ClientFilesSelect<T extends boolean = true> {
+  alt?: T;
+  folder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galleries_select".
+ */
+export interface GalleriesSelect<T extends boolean = true> {
+  title?: T;
+  note?: T;
+  files?: T;
+  password?: T;
+  passwordHash?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
