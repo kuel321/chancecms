@@ -75,6 +75,10 @@ export interface Config {
     users: User;
     'client-files': ClientFile;
     galleries: Gallery;
+    'billing-offers': BillingOffer;
+    'billing-invoices': BillingInvoice;
+    'billing-payments': BillingPayment;
+    'billing-subscriptions': BillingSubscription;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -100,6 +104,10 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     'client-files': ClientFilesSelect<false> | ClientFilesSelect<true>;
     galleries: GalleriesSelect<false> | GalleriesSelect<true>;
+    'billing-offers': BillingOffersSelect<false> | BillingOffersSelect<true>;
+    'billing-invoices': BillingInvoicesSelect<false> | BillingInvoicesSelect<true>;
+    'billing-payments': BillingPaymentsSelect<false> | BillingPaymentsSelect<true>;
+    'billing-subscriptions': BillingSubscriptionsSelect<false> | BillingSubscriptionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -906,6 +914,86 @@ export interface Gallery {
   createdAt: string;
 }
 /**
+ * Create products and fixed prices in Stripe, then paste a price ID here. Recurring prices become subscriptions.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "billing-offers".
+ */
+export interface BillingOffer {
+  id: number;
+  title: string;
+  /**
+   * Link name, e.g. domain-purchase. Filled from the title on first save; keep it unchanged after sharing.
+   */
+  slug?: string | null;
+  description?: string | null;
+  stripePriceID: string;
+  active?: boolean | null;
+  sortOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Save a draft, then generate a Stripe invoice. Share its payment link with your client. Amounts are in cents (USD).
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "billing-invoices".
+ */
+export interface BillingInvoice {
+  id: number;
+  title: string;
+  kind: 'invoice' | 'deposit';
+  customerName: string;
+  customerEmail: string;
+  amount: number;
+  daysUntilDue: number;
+  status?: ('draft' | 'open' | 'paid' | 'void' | 'uncollectible') | null;
+  stripeCustomerID?: string | null;
+  stripeInvoiceID?: string | null;
+  hostedInvoiceURL?: string | null;
+  operationKey?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Checkout records synced from Stripe. Manage refunds and disputes in the Stripe Dashboard.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "billing-payments".
+ */
+export interface BillingPayment {
+  id: number;
+  stripeSessionID: string;
+  offerTitle?: string | null;
+  customerEmail?: string | null;
+  stripeCustomerID?: string | null;
+  stripePaymentIntentID?: string | null;
+  stripeSubscriptionID?: string | null;
+  amount?: number | null;
+  currency?: string | null;
+  status?: ('pending' | 'paid' | 'failed' | 'expired' | 'refunded' | 'partially_refunded') | null;
+  livemode?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Current Stripe subscription state. Customers manage their plans through Billing on the website.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "billing-subscriptions".
+ */
+export interface BillingSubscription {
+  id: number;
+  stripeSubscriptionID: string;
+  stripeCustomerID: string;
+  status: string;
+  stripePriceID?: string | null;
+  cancelAtPeriodEnd?: boolean | null;
+  livemode?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
@@ -1126,6 +1214,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'galleries';
         value: number | Gallery;
+      } | null)
+    | ({
+        relationTo: 'billing-offers';
+        value: number | BillingOffer;
+      } | null)
+    | ({
+        relationTo: 'billing-invoices';
+        value: number | BillingInvoice;
+      } | null)
+    | ({
+        relationTo: 'billing-payments';
+        value: number | BillingPayment;
+      } | null)
+    | ({
+        relationTo: 'billing-subscriptions';
+        value: number | BillingSubscription;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1583,6 +1687,71 @@ export interface GalleriesSelect<T extends boolean = true> {
   password?: T;
   passwordHash?: T;
   slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "billing-offers_select".
+ */
+export interface BillingOffersSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  stripePriceID?: T;
+  active?: T;
+  sortOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "billing-invoices_select".
+ */
+export interface BillingInvoicesSelect<T extends boolean = true> {
+  title?: T;
+  kind?: T;
+  customerName?: T;
+  customerEmail?: T;
+  amount?: T;
+  daysUntilDue?: T;
+  status?: T;
+  stripeCustomerID?: T;
+  stripeInvoiceID?: T;
+  hostedInvoiceURL?: T;
+  operationKey?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "billing-payments_select".
+ */
+export interface BillingPaymentsSelect<T extends boolean = true> {
+  stripeSessionID?: T;
+  offerTitle?: T;
+  customerEmail?: T;
+  stripeCustomerID?: T;
+  stripePaymentIntentID?: T;
+  stripeSubscriptionID?: T;
+  amount?: T;
+  currency?: T;
+  status?: T;
+  livemode?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "billing-subscriptions_select".
+ */
+export interface BillingSubscriptionsSelect<T extends boolean = true> {
+  stripeSubscriptionID?: T;
+  stripeCustomerID?: T;
+  status?: T;
+  stripePriceID?: T;
+  cancelAtPeriodEnd?: T;
+  livemode?: T;
   updatedAt?: T;
   createdAt?: T;
 }

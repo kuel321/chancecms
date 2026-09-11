@@ -55,7 +55,10 @@ export default async function FrontendLayout({ children }: { children: React.Rea
             </div>
           </Link>
           <HideOnGallery>
-            <nav style={{ display: 'flex', gap: 18, alignItems: 'center' }}>
+            <nav
+              aria-label="Main navigation"
+              style={{ display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}
+            >
               <Link
                 href="/"
                 style={{
@@ -70,6 +73,22 @@ export default async function FrontendLayout({ children }: { children: React.Rea
                 Home
               </Link>
               <NavLinks pages={pages.map((p) => ({ title: p.title, slug: p.slug }))} />
+              {['services', 'billing'].map((slug) => (
+                <Link
+                  key={slug}
+                  href={`/${slug}`}
+                  style={{
+                    fontSize: 10,
+                    fontWeight: 700,
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    color: 'var(--color-muted)',
+                    textDecoration: 'none',
+                  }}
+                >
+                  {slug}
+                </Link>
+              ))}
               <Link
                 href="/posts"
                 style={{

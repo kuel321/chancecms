@@ -5,6 +5,12 @@ import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
+import {
+  BillingOffers,
+  BillingInvoices,
+  BillingPayments,
+  BillingSubscriptions,
+} from './collections/Billing'
 import { ClientFiles } from './collections/ClientFiles'
 import { Galleries } from './collections/Galleries'
 import { Media } from './collections/Media'
@@ -31,6 +37,7 @@ export default buildConfig({
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below.
       beforeDashboard: ['@/components/BeforeDashboard'],
+      afterDashboard: ['@/components/BillingSetup'],
       afterNavLinks: ['@/components/AdminFooter'],
       graphics: {
         Logo: '@/components/AdminLogo',
@@ -67,11 +74,25 @@ export default buildConfig({
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: sqliteAdapter({
+    push: process.env.PAYLOAD_SCHEMA_PUSH === 'false' ? false : undefined,
     client: {
       url: process.env.DATABASE_URL || '',
     },
   }),
-  collections: [Pages, Posts, Projects, Media, Categories, Users, ClientFiles, Galleries],
+  collections: [
+    Pages,
+    Posts,
+    Projects,
+    Media,
+    Categories,
+    Users,
+    ClientFiles,
+    Galleries,
+    BillingOffers,
+    BillingInvoices,
+    BillingPayments,
+    BillingSubscriptions,
+  ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [],
   plugins,
