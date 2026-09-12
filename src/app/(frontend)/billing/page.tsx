@@ -12,7 +12,9 @@ export default function BillingPage() {
   const portal = portalURL()
   return (
     <section style={{ maxWidth: 760, margin: '0 auto', padding: '80px 24px' }}>
-      <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 48 }}>Your billing, in one place.</h1>
+      <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(32px, 6vw, 48px)' }}>
+        Your billing, in one place.
+      </h1>
       <p style={{ margin: '24px 0' }}>
         View invoices, update your payment method, and manage your subscription. Sign in securely
         with the email address you used at checkout.

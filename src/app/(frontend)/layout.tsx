@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 }
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
-import { NavLinks } from '@/components/NavLinks'
+import { SiteNav } from '@/components/SiteNav'
 import { ScrollProgress } from '@/components/ScrollProgress'
 import { Footer } from '@/components/Footer'
 import { HideOnGallery } from '@/components/HideOnGallery'
@@ -55,67 +55,7 @@ export default async function FrontendLayout({ children }: { children: React.Rea
             </div>
           </Link>
           <HideOnGallery>
-            <nav
-              aria-label="Main navigation"
-              style={{ display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}
-            >
-              <Link
-                href="/"
-                style={{
-                  fontSize: 10,
-                  fontWeight: 700,
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: 'var(--color-muted)',
-                  textDecoration: 'none',
-                }}
-              >
-                Home
-              </Link>
-              <NavLinks pages={pages.map((p) => ({ title: p.title, slug: p.slug }))} />
-              {['services', 'billing'].map((slug) => (
-                <Link
-                  key={slug}
-                  href={`/${slug}`}
-                  style={{
-                    fontSize: 10,
-                    fontWeight: 700,
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: 'var(--color-muted)',
-                    textDecoration: 'none',
-                  }}
-                >
-                  {slug}
-                </Link>
-              ))}
-              <Link
-                href="/posts"
-                style={{
-                  fontSize: 10,
-                  fontWeight: 700,
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: 'var(--color-muted)',
-                  textDecoration: 'none',
-                }}
-              >
-                Updates
-              </Link>
-              <Link
-                href="/about"
-                style={{
-                  fontSize: 10,
-                  fontWeight: 700,
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: 'var(--color-muted)',
-                  textDecoration: 'none',
-                }}
-              >
-                About
-              </Link>
-            </nav>
+            <SiteNav pages={pages.map((p) => ({ title: p.title, slug: p.slug }))} />
           </HideOnGallery>
         </header>
 

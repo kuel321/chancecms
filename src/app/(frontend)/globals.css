@@ -25,6 +25,10 @@
 
 html { scroll-behavior: smooth; }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-sans);
   background: var(--color-linen);
@@ -152,6 +156,35 @@ body {
   margin-top: 4px;
 }
 
+.site-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-nav-desktop {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.site-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 6px;
+  margin: -6px;
+  color: var(--color-midnight);
+  cursor: pointer;
+  line-height: 0;
+}
+.site-nav-toggle:hover { color: var(--color-ember); }
+
+.site-nav-mobile {
+  display: none;
+}
+
 .background-logo {
 
   height:700px;
@@ -207,6 +240,42 @@ body {
 
   .logo-tagline {
     display: none;
+  }
+
+  .site-nav-desktop {
+    display: none;
+  }
+
+  .site-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .site-nav-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(240,224,199,0.98);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--color-rule);
+    padding: 4px 20px 16px;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    z-index: 99;
+  }
+
+  .site-nav-mobile a {
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-rule);
+    font-size: 12px !important;
   }
 
   .newsleter-email-input {
