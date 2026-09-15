@@ -8,13 +8,13 @@ const services = [
   {
     label: 'Web Design & Development',
     description:
-      'We\'ve been building web products since we created WV Cams, one of the most-visited sites in West Virginia. Every site is fast, mobile-friendly, and built with the same animation library powering Figma, Linear, and Vercel. No templates. No page builders. Just sites that work.',
+      "Starting with WVCams (One of the most popular sites in West Virginia), we've built up a reputation for fast, sleek, and stylized web applications. We can do the same for you. In fact, it's our favorite task.",
     cta: 'Get a site built',
   },
   {
     label: 'Custom Software',
     description:
-      'When off-the-shelf tools fall short, we build the real thing. Custom dashboards, internal tools, and SaaS applications built for how your business runs. Our work has supported clients from small businesses to the U.S. Department of Defense.',
+      'Custom dashboards, internal tools, and completely custom applications built for you and how your business works. No want or need is too big for our team.',
     cta: 'Tell us what you need',
   },
 

@@ -278,8 +278,7 @@ export default function AboutPage() {
                 }}
               >
                 The approach is the same regardless of the project. Figure out what the client
-                needs, build it well, and make sure they can use it without a manual. No
-                bloated proposals. No mystery invoices. Just good work delivered straight.
+                needs, build it well, and make sure they can use it without a manual.
               </p>
             </FadeUp>
 
@@ -321,7 +320,7 @@ export default function AboutPage() {
               lineHeight: 1.3,
             }}
           >
-            Good websites for good businesses.
+            Big Attention. Small Studio.
           </p>
           <a href="/#contact" className="btn-dark">
             Start a Project

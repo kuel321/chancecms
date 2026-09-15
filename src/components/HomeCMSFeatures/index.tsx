@@ -26,7 +26,7 @@ const features = [
     body: 'Upload photos, PDFs, and files in one place. Resize, organize, and reuse them across your whole site.',
   },
   {
-    title: 'Simple for Your Whole Team',
+    title: 'Simple',
     body: 'No training required. If someone on your team can send an email, they can update your website.',
   },
 ]

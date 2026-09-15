@@ -53,7 +53,7 @@ export function HomeHero() {
           Websites & Software, Built in West Virginia
         </p>
         <WordReveal
-          text="Your competitors bought a template. You can do better."
+          text="Your competitors bought a template. Let's build something better."
           as="h1"
           delay={0.2}
           stagger={0.06}
@@ -90,16 +90,16 @@ export function HomeHero() {
             marginBottom: 44,
           }}
         >
-          We&apos;ve been building websites and software in West Virginia since we created WV Cams.
-          Custom code, real design, and SaaS products that scale. No templates, no page builders,
-          no shortcuts.
+          We can deliver exactly what you need for your business. Branding, websites, software
+          solutions, and more. Imagine owning a digital presence that feels like <strong>yours</strong>,
+          not just a copy and paste.
         </p>
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
           <a href="#portfolio" className="btn-dark">
             See Our Work
           </a>
           <a href="#contact" className="btn-outline">
-            Get a Free Quote
+            Get a Quote
           </a>
         </div>
       </motion.div>
