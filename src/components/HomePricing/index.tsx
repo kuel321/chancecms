@@ -23,74 +23,48 @@ type Tier = {
 
 const tiers: Tier[] = [
   {
-    name: 'Monthly Option',
-    price: '$300 / month',
-    care: '12 months, then care plan',
-    who: 'Want to get online without writing a big check upfront.',
+    name: 'Launch',
+    price: '$2,000 – $2,500',
+    care: 'Hosting & Support from $150/month',
+    who: 'Service businesses that need a professional online presence and a clear way for customers to get in touch.',
     outcome:
-      'We build and launch your site, you pay monthly. Hosting included for the full year, then rolls into a care plan.',
+      'A clean, fast, fully custom website that represents the business well and makes it easy for customers to take the next step.',
     details: {
-      heading: 'Same site, spread out over 12 months.',
-      body: 'This is not a watered-down version of anything. You get a fully custom site built the same way as any other project. The only difference is how you pay for it. $300 a month for 12 months covers the design, the build, and hosting for that entire year. When the 12 months are up, your site is yours and you move onto a standard $150 / month care plan.',
+      heading: 'Get your business online the right way.',
+      body: 'Launch is for businesses that need a solid web presence: not a template, not a page builder, but a real custom site built around what your business does and how customers reach you. Every project is scoped to fit, so you only pay for what you actually need.',
       includes: [
-        'Full custom design and development',
-        'Hosting included for 12 months',
-        'Content management system',
-        'Mobile friendly',
-        'Contact form and basic SEO',
-        'Rolls into care plan after year one',
+        'Custom design',
+        'Mobile optimization',
+        'Contact or lead forms',
+        'Basic search setup',
+        'Analytics',
+        'Launch support',
       ],
       notFor:
-        'If you need a complex site with a blog, ecommerce, or advanced features, this plan works best for straightforward service business sites.',
+        'If you need to publish content regularly, build an email list, or grow an audience over time, Grow is the better fit.',
     },
   },
   {
     name: 'Grow',
     price: '$4,000 – $5,000',
-    care: '$200 / month care plan',
-    who: 'Businesses that publish content, capture leads, and want to build an audience over time.',
+    care: 'Hosting & Support from $200/month',
+    who: 'Businesses that regularly publish content, capture leads, or want to build an audience over time.',
     outcome:
-      'A full content platform: blog, newsletter, analytics, and lead capture, not just a brochure site.',
+      'A more capable content platform with the tools needed to publish, market, and grow, not just a basic brochure website.',
     featured: true,
     details: {
       heading: 'For businesses that need more than a static site.',
-      body: 'Grow is for businesses that are actively marketing. You need somewhere to publish updates, a way to collect emails, and visibility into what is working. This tier includes a blog or news section you can update yourself, a newsletter signup that connects to your email platform, Google Analytics, and a content workflow your whole team can use without training.',
+      body: 'Grow is for businesses that are actively marketing. You need somewhere to publish updates, a way to collect emails, and visibility into what is working. This includes everything in Launch, plus a content management platform for blog, news, or resource publishing, newsletter integration, and expanded analytics.',
       includes: [
-        'Everything in Launch',
-        'Blog or news section',
-        'Newsletter signup and email integration',
-        'Google Analytics setup',
-        'Advanced SEO configuration',
-        'Lead capture forms',
-        'Content workflow for your team',
-        '$200 / month care plan (hosting, updates, support)',
+        'Everything included with Launch',
+        'Content management platform',
+        'Blog, news, or resource publishing',
+        'Newsletter integration',
+        'Enhanced lead capture',
+        'Expanded analytics',
       ],
       notFor:
-        'If you just need a clean site with your services, hours, and a contact form, Launch is the right fit and will save you money.',
-    },
-  },
-  {
-    name: 'Launch',
-    price: '$2,000 – $2,500',
-    care: '$150 / month care plan',
-    who: 'Service businesses that need to look professional and be easy to find online.',
-    outcome:
-      'A clean, fast, fully custom site that represents your business well and gets out of your way.',
-    details: {
-      heading: 'Get your business online the right way.',
-      body: 'Launch is for businesses that need a solid web presence: not a template, not a page builder, but a real custom site built for you. Your services, your story, your contact info, done well. Clients can find you, see what you do, and reach out. That is the job. We do it fast and we do it right.',
-      includes: [
-        'Fully custom design (not a template)',
-        'Up to 6 pages',
-        'Mobile friendly',
-        'Contact form',
-        'Basic SEO setup',
-        'Smooth animations (Framer Motion)',
-        'Content management, update it yourself',
-        '$150 / month care plan (hosting, updates, support)',
-      ],
-      notFor:
-        'If you need a blog, newsletter, or want to actively publish content to grow an audience, Grow is the better fit.',
+        'If you just need a clean site with your services and a way for customers to reach you, Launch is the right fit and will save you money.',
     },
   },
 ]
@@ -345,18 +319,22 @@ export function HomePricing() {
                 maxWidth: 500,
               }}
             >
-              No surprise fees. No locked-in contracts. Every project includes a monthly care plan:
-              hosting, updates, and ongoing support.
+              No surprise fees or confusing packages. Every project is scoped around what your
+              business actually needs, with ongoing <strong style={{ fontWeight: 700, color: 'var(--color-midnight)' }}>hosting, updates, and support</strong> available
+              through a monthly care plan.
             </p>
           </motion.div>
 
           {/* Tier cards */}
           <div
+            className="pricing-tiers"
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gridTemplateColumns: '1fr 1fr',
               gap: 24,
-              marginBottom: 40,
+              maxWidth: 840,
+              margin: '0 auto 40px',
+              alignItems: 'stretch',
             }}
           >
             {tiers.map((tier, i) => (
@@ -438,7 +416,7 @@ export function HomePricing() {
                     fontWeight: 700,
                     letterSpacing: '0.15em',
                     textTransform: 'uppercase',
-                    color: tier.featured ? 'rgba(240,224,199,0.4)' : 'var(--color-muted)',
+                    color: tier.featured ? 'rgba(240,224,199,0.65)' : 'var(--color-muted)',
                     marginBottom: 8,
                   }}
                 >
@@ -449,7 +427,7 @@ export function HomePricing() {
                     fontSize: 13,
                     fontWeight: 300,
                     lineHeight: 1.7,
-                    color: tier.featured ? 'rgba(240,224,199,0.6)' : 'var(--color-muted)',
+                    color: tier.featured ? 'rgba(240,224,199,0.85)' : 'var(--color-muted)',
                     marginBottom: 20,
                   }}
                 >
@@ -461,7 +439,7 @@ export function HomePricing() {
                     fontSize: 13,
                     fontWeight: 300,
                     lineHeight: 1.8,
-                    color: tier.featured ? 'rgba(240,224,199,0.75)' : 'var(--color-midnight)',
+                    color: tier.featured ? 'var(--color-linen)' : 'var(--color-midnight)',
                     flex: 1,
                   }}
                 >
@@ -497,7 +475,7 @@ export function HomePricing() {
                     fontWeight: 700,
                     letterSpacing: '0.18em',
                     textTransform: 'uppercase',
-                    color: tier.featured ? 'rgba(240,224,199,0.4)' : 'var(--color-muted)',
+                    color: tier.featured ? 'rgba(240,224,199,0.6)' : 'var(--color-muted)',
                     padding: 0,
                     textAlign: 'center',
                     width: '100%',
@@ -509,7 +487,50 @@ export function HomePricing() {
             ))}
           </div>
 
-          {/* Monthly build callout */}
+          {/* Payment plan callout */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.55, delay: 0.15, ease: ease }}
+            style={{
+              maxWidth: 840,
+              margin: '0 auto 32px',
+              background: 'var(--color-cream)',
+              border: '1px dashed var(--color-rule)',
+              padding: '28px 36px',
+              textAlign: 'center',
+            }}
+          >
+            <p
+              style={{
+                fontSize: 10,
+                fontWeight: 700,
+                letterSpacing: '0.25em',
+                textTransform: 'uppercase',
+                color: 'var(--color-ember)',
+                marginBottom: 8,
+              }}
+            >
+              Need to Spread Out the Cost?
+            </p>
+            <p
+              style={{
+                fontSize: 13,
+                fontWeight: 300,
+                lineHeight: 1.75,
+                color: 'var(--color-muted)',
+                maxWidth: 480,
+                margin: '0 auto 18px',
+              }}
+            >
+              Payment plans are available for either package. We can divide the project cost into
+              predictable monthly payments based on the scope and timeline.
+            </p>
+            <a href="#contact" className="btn-outline">
+              Ask About Payment Plans
+            </a>
+          </motion.div>
+
           {/* Custom / Build callout */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -685,7 +706,6 @@ export function HomePricing() {
                       <option>Launch</option>
                       <option>Grow</option>
                       <option>Build / Custom</option>
-                      <option>Monthly Build ($300/mo)</option>
                       <option>Ecommerce Store</option>
                       <option>Campaign / Political Site</option>
                       <option>Care Plan Only</option>

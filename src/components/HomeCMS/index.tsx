@@ -47,8 +47,7 @@ export function HomeCMS() {
           initial={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}
           animate={logoInView ? { clipPath: 'inset(0% 0 0 0)', opacity: 0.18 } : {}}
           transition={{ duration: 1.4, ease: ease, delay: 0.3 }}
-          style={{ filter: 'blur(2px)'
-          }}
+          style={{ filter: 'blur(2px)' }}
         />
       </motion.div>
       <div
@@ -93,8 +92,8 @@ export function HomeCMS() {
               marginBottom: 20,
             }}
           >
-            Every site we build comes with a clean, easy-to-use admin panel. Change your hours, post
-            an announcement, add a new service whenever you need to, on your own schedule.
+            Change your hours, post an announcement, add a new service whenever you need to, on your
+            own schedule.
           </p>
           <p
             style={{

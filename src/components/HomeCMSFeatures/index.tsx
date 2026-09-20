@@ -81,8 +81,8 @@ export function HomeCMSFeatures() {
               margin: '0 auto 64px',
             }}
           >
-            Every site we build runs on a CMS that can grow with your business. Here is what comes
-            standard.
+            Every CMS-Supported site we build runs on a CMS that can grow with your business. Here
+            is what comes standard.
           </p>
         </motion.div>
 

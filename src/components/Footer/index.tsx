@@ -37,7 +37,7 @@ export function Footer() {
                 marginBottom: 6,
               }}
             >
-              Free Tips for Local Business Owners
+              Tips for Building Online
             </p>
             <p
               style={{
@@ -48,7 +48,7 @@ export function Footer() {
                 lineHeight: 1.2,
               }}
             >
-              Grow your business online. We&apos;ll show you how.
+              Build something better online. We&apos;ll show you how.
             </p>
           </div>
 

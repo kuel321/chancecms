@@ -28,13 +28,13 @@ export function HomeCTA() {
           fontWeight: 400, lineHeight: 1.15,
           color: 'var(--color-linen)', marginBottom: 24,
         }}>
-          Ready to get your business <em style={{ fontStyle: 'italic', color: 'rgba(240,224,199,0.6)' }}>online?</em>
+          Ready to get <em style={{ fontStyle: 'italic', color: 'rgba(240,224,199,0.6)' }}>online?</em>
         </h2>
         <p style={{
           fontSize: 15, fontWeight: 300, lineHeight: 1.85,
           color: 'rgba(240,224,199,0.5)', maxWidth: 480, margin: '0 auto 44px',
         }}>
-          Whether you need a simple site up this week or a custom solution built from scratch, we&apos;ll figure out what makes sense for your business and make it happen.
+          Whether you need a simple site up this week or a custom solution built from scratch, we&apos;ll figure out what makes sense and make it happen.
         </p>
         <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
           <a href="/#contact" className="btn-ember">Get a Free Quote</a>
