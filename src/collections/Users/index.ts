@@ -21,6 +21,14 @@ export const Users: CollectionConfig = {
       name: 'name',
       type: 'text',
     },
+    {
+      name: 'signature',
+      type: 'upload',
+      relationTo: 'signatures',
+      admin: {
+        description: 'Filled in automatically on in-kind contribution records you create.',
+      },
+    },
   ],
   timestamps: true,
 }

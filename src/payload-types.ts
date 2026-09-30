@@ -79,6 +79,8 @@ export interface Config {
     'billing-invoices': BillingInvoice;
     'billing-payments': BillingPayment;
     'billing-subscriptions': BillingSubscription;
+    quotes: Quote;
+    signatures: Signature;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -108,6 +110,8 @@ export interface Config {
     'billing-invoices': BillingInvoicesSelect<false> | BillingInvoicesSelect<true>;
     'billing-payments': BillingPaymentsSelect<false> | BillingPaymentsSelect<true>;
     'billing-subscriptions': BillingSubscriptionsSelect<false> | BillingSubscriptionsSelect<true>;
+    quotes: QuotesSelect<false> | QuotesSelect<true>;
+    signatures: SignaturesSelect<false> | SignaturesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -476,6 +480,10 @@ export interface Category {
 export interface User {
   id: number;
   name?: string | null;
+  /**
+   * Filled in automatically on in-kind contribution records you create.
+   */
+  signature?: (number | null) | Signature;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -494,6 +502,27 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
+}
+/**
+ * Signature images for in-kind contribution records. Use a PNG with a transparent background. Only logged-in admins can view these.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "signatures".
+ */
+export interface Signature {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -994,6 +1023,110 @@ export interface BillingSubscription {
   createdAt: string;
 }
 /**
+ * Build a quote from the Launch or Grow package, then open it to download a PDF. Switch the type to "Personal in-kind donation" for work donated personally (no Chasing a Chance branding). Amounts are in whole US dollars.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes".
+ */
+export interface Quote {
+  id: number;
+  title: string;
+  /**
+   * Assigned on first save.
+   */
+  quoteNumber?: string | null;
+  /**
+   * In-kind donations are issued under your own name with no company branding, hosting, or payment terms. Your labor is listed as volunteer (no charge); only purchased items carry a value.
+   */
+  kind: 'business' | 'inKind';
+  status: 'draft' | 'sent' | 'accepted' | 'declined';
+  /**
+   * For in-kind donations, the date the contribution was made.
+   */
+  issueDate: string;
+  /**
+   * Campaigns report contributions against the primary or general election.
+   */
+  election?: ('primary' | 'general') | null;
+  validUntil?: string | null;
+  /**
+   * Calculated on save. For in-kind donations this is the reportable value (purchased items only).
+   */
+  total?: number | null;
+  donorName?: string | null;
+  donorEmail?: string | null;
+  donorAddress?: string | null;
+  donorOccupation?: string | null;
+  donorEmployer?: string | null;
+  clientName: string;
+  clientCompany?: string | null;
+  clientEmail?: string | null;
+  projectType?: ('website' | 'printDesign' | 'photography' | 'other') | null;
+  /**
+   * Shown under the main line item.
+   */
+  workDescription?: string | null;
+  /**
+   * For reference only. Estimates print beside "Volunteer, no charge" and in a separate total, never in the reportable value. Websites use the package price field; add-ons use their price.
+   */
+  showEstimatedValue?: boolean | null;
+  /**
+   * Reference only.
+   */
+  estimatedValue?: number | null;
+  package: 'launch' | 'grow';
+  /**
+   * Leave blank for the package starting price (Launch $2,000–2,500, Grow $4,000–5,000).
+   */
+  packagePrice?: number | null;
+  /**
+   * Launch includes 5, Grow includes 10. Extra pages are added as a line item.
+   */
+  pages?: number | null;
+  /**
+   * Photography is included with Grow and an add-on for Launch.
+   */
+  photography?: boolean | null;
+  addOns?:
+    | {
+        label: string;
+        /**
+         * Items you paid for, e.g. stock photos, fonts, domains.
+         */
+        inKindType?: ('volunteer' | 'item') | null;
+        /**
+         * On in-kind records: what you paid for a purchased item, or the estimated value of volunteer work.
+         */
+        price?: number | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  discount?: number | null;
+  discountLabel?: string | null;
+  includeCarePlan?: boolean | null;
+  /**
+   * Leave blank for the package rate (Launch $150, Grow $200).
+   */
+  carePlanPrice?: number | null;
+  /**
+   * Shown on the quote, e.g. project scope or timeline.
+   */
+  notes?: string | null;
+  terms?: string | null;
+  /**
+   * Printed on the donation document in place of payment terms. Edit it if anything here is not true.
+   */
+  donationStatement?: string | null;
+  showReceivedBy?: boolean | null;
+  /**
+   * Printed on the contributor line with the date the PDF is generated. Clear it to leave the line blank.
+   */
+  signature?: (number | null) | Signature;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
@@ -1230,6 +1363,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'billing-subscriptions';
         value: number | BillingSubscription;
+      } | null)
+    | ({
+        relationTo: 'quotes';
+        value: number | Quote;
+      } | null)
+    | ({
+        relationTo: 'signatures';
+        value: number | Signature;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1626,6 +1767,7 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  signature?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -1754,6 +1896,74 @@ export interface BillingSubscriptionsSelect<T extends boolean = true> {
   livemode?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quotes_select".
+ */
+export interface QuotesSelect<T extends boolean = true> {
+  title?: T;
+  quoteNumber?: T;
+  kind?: T;
+  status?: T;
+  issueDate?: T;
+  election?: T;
+  validUntil?: T;
+  total?: T;
+  donorName?: T;
+  donorEmail?: T;
+  donorAddress?: T;
+  donorOccupation?: T;
+  donorEmployer?: T;
+  clientName?: T;
+  clientCompany?: T;
+  clientEmail?: T;
+  projectType?: T;
+  workDescription?: T;
+  showEstimatedValue?: T;
+  estimatedValue?: T;
+  package?: T;
+  packagePrice?: T;
+  pages?: T;
+  photography?: T;
+  addOns?:
+    | T
+    | {
+        label?: T;
+        inKindType?: T;
+        price?: T;
+        description?: T;
+        id?: T;
+      };
+  discount?: T;
+  discountLabel?: T;
+  includeCarePlan?: T;
+  carePlanPrice?: T;
+  notes?: T;
+  terms?: T;
+  donationStatement?: T;
+  showReceivedBy?: T;
+  signature?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "signatures_select".
+ */
+export interface SignaturesSelect<T extends boolean = true> {
+  name?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

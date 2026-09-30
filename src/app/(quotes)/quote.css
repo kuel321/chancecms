@@ -1,0 +1,225 @@
+/* Printable quote. On screen it previews a US Letter sheet; in print only the sheet is output. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+@page {
+  size: letter;
+  margin: 0;
+}
+
+.quote-body {
+  background: var(--color-parchment);
+  padding: 32px 16px 64px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.quote-toolbar {
+  max-width: 8.5in;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.quote-toolbar button { border: 0; cursor: pointer; }
+
+.quote-sheet {
+  max-width: 8.5in;
+  min-height: 11in;
+  margin: 0 auto;
+  background: var(--color-cream);
+  box-shadow: 0 12px 40px rgba(0, 34, 2, 0.12);
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.quote-header {
+  background: var(--color-midnight);
+  color: var(--color-linen);
+  padding: 0.45in 0.6in 0.35in;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  border-bottom: 4px solid var(--color-ember);
+}
+.quote-brand { display: flex; align-items: center; gap: 14px; }
+.quote-brand-name { font-family: var(--font-serif); font-size: 26px; line-height: 1.1; }
+.quote-brand-tagline {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+.quote-id { text-align: right; }
+.quote-number { font-family: var(--font-serif); font-size: 22px; }
+
+.quote-eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+  margin-bottom: 4px;
+}
+
+.quote-meta {
+  padding: 0.3in 0.6in 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+.quote-dates { display: flex; gap: 32px; }
+.quote-address { white-space: pre-line; }
+
+.quote-title {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--color-pine);
+  margin: 0.25in 0.6in 0.15in;
+  line-height: 1.2;
+}
+
+.quote-lines {
+  margin: 0 0.6in;
+  width: calc(100% - 1.2in);
+  border-collapse: collapse;
+}
+.quote-lines th {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-align: left;
+  padding: 8px 0;
+  border-bottom: 1.5px solid var(--color-pine);
+}
+.quote-lines td {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--color-rule);
+  vertical-align: top;
+}
+.quote-lines th:last-child,
+.quote-lines td:last-child {
+  text-align: right;
+  white-space: nowrap;
+  padding-left: 24px;
+}
+.quote-lines tr { break-inside: avoid; }
+.quote-line-label { font-weight: 700; color: var(--color-pine); }
+.quote-line-detail { color: var(--color-muted); font-size: 12px; margin-top: 2px; }
+.quote-included { color: var(--color-ember); font-weight: 700; }
+
+.quote-totals {
+  margin: 12px 0.6in 0 auto;
+  width: 3.2in;
+  max-width: calc(100% - 1.2in);
+  break-inside: avoid;
+}
+.quote-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 6px 0;
+}
+.quote-total-row strong { font-family: var(--font-serif); font-size: 24px; color: var(--color-pine); }
+.quote-total-monthly { border-top: 1px solid var(--color-rule); }
+.quote-total-monthly strong { font-size: 16px; }
+.quote-total-note strong { font-size: 16px; }
+.quote-total-estimate {
+  border-top: 1px solid var(--color-rule);
+  font-size: 11px;
+  color: var(--color-muted);
+  gap: 16px;
+}
+.quote-total-estimate span:last-child { white-space: nowrap; }
+.quote-line-estimate { font-size: 11px; font-weight: 400; color: var(--color-muted); }
+.quote-text-followup { margin-top: 6px !important; }
+
+.quote-text {
+  margin: 0.2in 0.6in 0;
+  break-inside: avoid;
+}
+.quote-text p { white-space: pre-line; margin: 0; }
+
+.quote-footer {
+  margin-top: auto;
+  padding: 0.25in 0.6in 0;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+}
+
+/* Personal in-kind records use lukeshort.dev's palette instead of the studio's. The tokens
+   are overridden on body so the page background and print background follow. */
+.quote-body:has(.quote-theme-personal) {
+  --color-parchment: #d6d6ce;
+  --color-cream: #f7f7f3;
+  --color-midnight: #30381f;
+  --color-linen: #d6d6ce;
+  --color-ember: #6f6b58;
+  --color-pine: #30381f;
+  --color-text: #1f2414;
+  --color-muted: rgba(48, 56, 31, 0.65);
+  --color-rule: rgba(48, 56, 31, 0.14);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-sans);
+}
+.quote-theme-personal .quote-brand-name,
+.quote-theme-personal .quote-title { font-weight: 700; letter-spacing: -0.02em; }
+
+.quote-signatures {
+  margin: 0.45in 0.6in 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5in;
+  break-inside: avoid;
+}
+.quote-signature-line {
+  height: 0.4in;
+  border-bottom: 1px solid var(--color-pine);
+  margin-bottom: 6px;
+}
+.quote-signature-line:has(img) {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+.quote-signature-line img {
+  max-height: 0.55in;
+  max-width: 70%;
+  margin-bottom: -0.08in;
+}
+.quote-signature-line span { padding-bottom: 4px; }
+
+@media (max-width: 640px) {
+  .quote-signatures { grid-template-columns: 1fr; }
+  .quote-header,
+  .quote-meta { flex-direction: column; align-items: flex-start; }
+  .quote-id { text-align: left; }
+}
+
+@media print {
+  html,
+  .quote-body { background: var(--color-cream); padding: 0; }
+  .quote-toolbar { display: none; }
+  /* Page margins print white, so pages have none; the cloned padding gives every page
+     its own top and bottom margin, and the header pulls up into page one's. */
+  .quote-sheet {
+    max-width: none;
+    min-height: 0;
+    box-shadow: none;
+    padding: 0.45in 0;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .quote-header { margin-top: -0.45in; }
+}

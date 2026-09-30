@@ -17,6 +17,8 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Projects } from './collections/Projects'
+import { Quotes } from './collections/Quotes'
+import { Signatures } from './collections/Signatures'
 import { Users } from './collections/Users'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
@@ -92,6 +94,8 @@ export default buildConfig({
     BillingInvoices,
     BillingPayments,
     BillingSubscriptions,
+    Quotes,
+    Signatures,
   ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [],

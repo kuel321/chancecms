@@ -21,6 +21,7 @@ import { FolderTableCell as FolderTableCell_f9c02e79a4aed9a3924487c0cd4cafb1 } f
 import { FolderField as FolderField_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 import { default as default_a92f29b4ed77a16c1bab40597716342b } from '@/components/ServiceLink'
 import { default as default_774594a3f1618c3bfe6f21d657c2620b } from '@/components/InvoiceActions'
+import { default as default_27d532a75497bfd014c13684dec39460 } from '@/components/QuoteActions'
 import { LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { FolderTypeField as FolderTypeField_2b8867833a34864a02ddf429b0728a40 } from '@payloadcms/next/client'
@@ -56,6 +57,7 @@ export const importMap = {
   "@payloadcms/next/rsc#FolderField": FolderField_f9c02e79a4aed9a3924487c0cd4cafb1,
   "@/components/ServiceLink#default": default_a92f29b4ed77a16c1bab40597716342b,
   "@/components/InvoiceActions#default": default_774594a3f1618c3bfe6f21d657c2620b,
+  "@/components/QuoteActions#default": default_27d532a75497bfd014c13684dec39460,
   "@payloadcms/plugin-search/client#LinkToDoc": LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,
   "@payloadcms/plugin-search/client#ReindexButton": ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
   "@payloadcms/next/client#FolderTypeField": FolderTypeField_2b8867833a34864a02ddf429b0728a40,

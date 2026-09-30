@@ -19,6 +19,9 @@ tsconfig.tsbuildinfo
 
 # Payload default media upload directory
 
+# Private uploads (signatures) must never be committed
+/private/
+
 
 public/robots.txt
 public/sitemap*.xml
