@@ -139,7 +139,6 @@
 }
 .quote-total-estimate span:last-child { white-space: nowrap; }
 .quote-line-estimate { font-size: 11px; font-weight: 400; color: var(--color-muted); }
-.quote-text-followup { margin-top: 6px !important; }
 
 .quote-text {
   margin: 0.2in 0.6in 0;

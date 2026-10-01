@@ -250,12 +250,6 @@ export default async function QuotePage({ params }: Args) {
           <section className="quote-text">
             <div className="quote-eyebrow">Contribution statement</div>
             <p>{quote.donationStatement}</p>
-            {estimatedVolunteerValue !== null && estimatedVolunteerValue > 0 && (
-              <p className="quote-text-followup">
-                Estimated values shown for volunteer services are for reference only. They are not
-                contributions and are not included in the reportable in-kind value.
-              </p>
-            )}
           </section>
         )}
         {inKind && (
