@@ -47,6 +47,12 @@ async function getSignatureSrc(quote: Quote, user: User): Promise<string | null>
   return file ? `data:${signature.mimeType};base64,${file.toString('base64')}` : null
 }
 
+// Uncompensated volunteer time isn't a contribution, so a record is only titled as an
+// in-kind contribution when it also lists purchased items.
+function inKindLabel(hasItems: boolean): string {
+  return hasItems ? 'Volunteer Services & In-Kind Contribution' : 'Volunteer Services Acknowledgment'
+}
+
 function formatDate(value: string): string {
   return new Date(value).toLocaleDateString('en-US', {
     month: 'long',
@@ -59,11 +65,12 @@ function formatDate(value: string): string {
 export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const { quote } = await getQuote((await params).id)
   const recipient = quote.clientCompany || quote.clientName
+  const hasItems = calculateQuote(quote).lines.some((line) => !line.volunteer)
   // The browser uses the page title as the default PDF filename.
   return {
     title:
       quote.kind === 'inKind'
-        ? `${quote.quoteNumber} ${recipient} - In-Kind Contribution from ${quote.donorName}`
+        ? `${quote.quoteNumber} ${recipient} - ${inKindLabel(hasItems)} from ${quote.donorName}`
         : `${quote.quoteNumber} ${recipient} - Chasing a Chance Quote`,
   }
 }
@@ -74,6 +81,33 @@ export default async function QuotePage({ params }: Args) {
   const { lines, total, monthly, hasVolunteer, estimatedVolunteerValue } = calculateQuote(quote)
   // In-kind donations are personal, so they carry none of the studio's branding.
   const inKind = quote.kind === 'inKind'
+  const volunteerLines = lines.filter((line) => line.volunteer)
+  const itemLines = lines.filter((line) => !line.volunteer)
+  const hasItems = inKind && itemLines.length > 0
+
+  const renderRows = (rows: typeof lines) =>
+    rows.map((line, i) => (
+      <tr key={i}>
+        <td>
+          <div className="quote-line-label">{line.label}</div>
+          {line.detail && <div className="quote-line-detail">{line.detail}</div>}
+        </td>
+        <td className={line.included || line.volunteer ? 'quote-included' : undefined}>
+          {line.volunteer ? (
+            <>
+              Volunteer, no charge
+              {line.estimate !== undefined && (
+                <div className="quote-line-estimate">Est. value {formatMoney(line.estimate)}</div>
+              )}
+            </>
+          ) : line.included ? (
+            'Included'
+          ) : (
+            formatMoney(line.amount)
+          )}
+        </td>
+      </tr>
+    ))
 
   return (
     <div className={inKind ? 'quote-theme-personal' : undefined}>
@@ -90,7 +124,7 @@ export default async function QuotePage({ params }: Args) {
             <div className="quote-brand">
               <div>
                 <div className="quote-brand-name">{quote.donorName}</div>
-                <div className="quote-brand-tagline">In-kind contribution record</div>
+                <div className="quote-brand-tagline">{inKindLabel(hasItems)}</div>
               </div>
             </div>
           ) : (
@@ -104,7 +138,7 @@ export default async function QuotePage({ params }: Args) {
             </div>
           )}
           <div className="quote-id">
-            <div className="quote-eyebrow">{inKind ? 'In-kind contribution' : 'Quote'}</div>
+            <div className="quote-eyebrow">{inKind ? 'Record' : 'Quote'}</div>
             <div className="quote-number">{quote.quoteNumber}</div>
           </div>
         </header>
@@ -143,7 +177,7 @@ export default async function QuotePage({ params }: Args) {
             </div>
           )}
           <div>
-            <div className="quote-eyebrow">{inKind ? 'Contribution to' : 'Prepared for'}</div>
+            <div className="quote-eyebrow">{inKind ? 'Provided to' : 'Prepared for'}</div>
             <p>
               <strong>{quote.clientName}</strong>
               {quote.clientCompany && (
@@ -182,38 +216,40 @@ export default async function QuotePage({ params }: Args) {
 
         <h1 className="quote-title">{quote.title}</h1>
 
-        <table className="quote-lines">
-          <thead>
-            <tr>
-              <th>{inKind ? 'Description' : 'Item'}</th>
-              <th>{inKind ? 'Value' : 'Amount'}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {lines.map((line, i) => (
-              <tr key={i}>
-                <td>
-                  <div className="quote-line-label">{line.label}</div>
-                  {line.detail && <div className="quote-line-detail">{line.detail}</div>}
-                </td>
-                <td className={line.included || line.volunteer ? 'quote-included' : undefined}>
-                  {line.volunteer ? (
-                    <>
-                      Volunteer, no charge
-                      {line.estimate !== undefined && (
-                        <div className="quote-line-estimate">
-                          Est. value {formatMoney(line.estimate)}
-                        </div>
-                      )}
-                    </>
-                  ) : line.included
-                      ? 'Included'
-                      : formatMoney(line.amount)}
-                </td>
+        {inKind ? (
+          <>
+            <table className="quote-lines">
+              <thead>
+                <tr>
+                  <th>Volunteer services</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>{renderRows(volunteerLines)}</tbody>
+            </table>
+            {hasItems && (
+              <table className="quote-lines quote-lines-items">
+                <thead>
+                  <tr>
+                    <th>Purchased items (in-kind contribution)</th>
+                    <th>Cost</th>
+                  </tr>
+                </thead>
+                <tbody>{renderRows(itemLines)}</tbody>
+              </table>
+            )}
+          </>
+        ) : (
+          <table className="quote-lines">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Amount</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>{renderRows(lines)}</tbody>
+          </table>
+        )}
 
         <section className="quote-totals">
           {hasVolunteer && (
@@ -222,13 +258,15 @@ export default async function QuotePage({ params }: Args) {
               <strong>No charge</strong>
             </div>
           )}
-          <div className="quote-total-row">
-            <span>{inKind ? 'Reportable in-kind value' : 'Project total'}</span>
-            <strong>{formatMoney(total)}</strong>
-          </div>
+          {(!inKind || hasItems) && (
+            <div className="quote-total-row">
+              <span>{inKind ? 'Total' : 'Project total'}</span>
+              <strong>{formatMoney(total)}</strong>
+            </div>
+          )}
           {estimatedVolunteerValue !== null && estimatedVolunteerValue > 0 && (
             <div className="quote-total-row quote-total-estimate">
-              <span>Estimated value of volunteer services (not a contribution)</span>
+              <span>Estimated value of volunteer services (for reference only)</span>
               <span>{formatMoney(estimatedVolunteerValue)}</span>
             </div>
           )}

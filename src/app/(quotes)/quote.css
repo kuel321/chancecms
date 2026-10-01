@@ -111,6 +111,7 @@
   padding-left: 24px;
 }
 .quote-lines tr { break-inside: avoid; }
+.quote-lines-items { margin-top: 0.25in; }
 .quote-line-label { font-weight: 700; color: var(--color-pine); }
 .quote-line-detail { color: var(--color-muted); font-size: 12px; margin-top: 2px; }
 .quote-included { color: var(--color-ember); font-weight: 700; }

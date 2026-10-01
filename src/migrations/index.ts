@@ -4,6 +4,7 @@ import * as migration_20260911_143829_stripe_billing from './20260911_143829_str
 import * as migration_20260911_151533_service_links from './20260911_151533_service_links';
 import * as migration_20260930_174846_quotes from './20260930_174846_quotes';
 import * as migration_20261001_152106_shorter_statement from './20261001_152106_shorter_statement';
+import * as migration_20261001_162525_received_by_off from './20261001_162525_received_by_off';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20261001_152106_shorter_statement.up,
     down: migration_20261001_152106_shorter_statement.down,
-    name: '20261001_152106_shorter_statement'
+    name: '20261001_152106_shorter_statement',
+  },
+  {
+    up: migration_20261001_162525_received_by_off.up,
+    down: migration_20261001_162525_received_by_off.down,
+    name: '20261001_162525_received_by_off'
   },
 ];

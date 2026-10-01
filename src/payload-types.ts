@@ -1023,7 +1023,7 @@ export interface BillingSubscription {
   createdAt: string;
 }
 /**
- * Build a quote from the Launch or Grow package, then open it to download a PDF. Switch the type to "Personal in-kind donation" for work donated personally (no Chasing a Chance branding). Amounts are in whole US dollars.
+ * Build a quote from the Launch or Grow package, then open it to download a PDF. Switch the type to "Personal volunteer / in-kind" for work donated personally (no Chasing a Chance branding). Amounts are in whole US dollars.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "quotes".
@@ -1036,7 +1036,7 @@ export interface Quote {
    */
   quoteNumber?: string | null;
   /**
-   * In-kind donations are issued under your own name with no company branding, hosting, or payment terms. Your labor is listed as volunteer (no charge); only purchased items carry a value.
+   * Personal records are issued under your own name with no company branding, hosting, or payment terms. Your labor is listed as volunteer (no charge); only purchased items carry a value.
    */
   kind: 'business' | 'inKind';
   status: 'draft' | 'sent' | 'accepted' | 'declined';

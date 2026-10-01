@@ -66,7 +66,7 @@ export const Quotes: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['quoteNumber', 'title', 'clientName', 'package', 'total', 'status'],
     description:
-      'Build a quote from the Launch or Grow package, then open it to download a PDF. Switch the type to "Personal in-kind donation" for work donated personally (no Chasing a Chance branding). Amounts are in whole US dollars.',
+      'Build a quote from the Launch or Grow package, then open it to download a PDF. Switch the type to "Personal volunteer / in-kind" for work donated personally (no Chasing a Chance branding). Amounts are in whole US dollars.',
   },
   fields: [
     {
@@ -95,12 +95,12 @@ export const Quotes: CollectionConfig = {
       required: true,
       options: [
         { label: 'Chasing a Chance quote', value: 'business' },
-        { label: 'Personal in-kind donation', value: 'inKind' },
+        { label: 'Personal volunteer / in-kind', value: 'inKind' },
       ],
       admin: {
         position: 'sidebar',
         description:
-          'In-kind donations are issued under your own name with no company branding, hosting, or payment terms. Your labor is listed as volunteer (no charge); only purchased items carry a value.',
+          'Personal records are issued under your own name with no company branding, hosting, or payment terms. Your labor is listed as volunteer (no charge); only purchased items carry a value.',
       },
     },
     {
@@ -393,7 +393,7 @@ export const Quotes: CollectionConfig = {
       name: 'showReceivedBy',
       type: 'checkbox',
       label: 'Include "Received for the campaign by" signature line',
-      defaultValue: true,
+      defaultValue: false,
       admin: { condition: isInKind },
     },
     {
