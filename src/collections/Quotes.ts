@@ -26,7 +26,7 @@ const isWebsite: Condition = (data) =>
   data?.kind !== 'inKind' || !data?.projectType || data.projectType === 'website'
 
 const volunteerStatement =
-  'All services listed as volunteer were performed personally by the contributor, on personal time and without compensation. Uncompensated volunteer personal services are not a contribution under W. Va. Code §3-8-1a, so they carry no value. No corporation or business, including any business owned by the contributor, provided, paid for, or supplied equipment or software for this work. Any item listed with a dollar amount is an in-kind contribution from the contributor, valued at fair market value.'
+  'All services listed as volunteer were performed personally by the contributor, on personal time and without compensation.'
 
 const requiredForInKind = (value: unknown, { data }: { data: Partial<{ kind: QuoteKind }> }) =>
   data?.kind !== 'inKind' || Boolean(value) || 'Required for in-kind donations.'
