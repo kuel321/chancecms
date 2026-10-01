@@ -22,6 +22,15 @@ tsconfig.tsbuildinfo
 # Private uploads (signatures) must never be committed
 /private/
 
+# Uploads made through the admin live only on the machine they were uploaded to
+# (files already committed stay tracked)
+/public/media/*
+/public/client-files/
+
+# Server-side backups
+.env.bak*
+*.db.bak*
+
 
 public/robots.txt
 public/sitemap*.xml
